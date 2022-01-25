@@ -51,3 +51,9 @@ body {
   border-radius: 3px;
   margin-left: 5px;
 }
+
+.todoList li {
+  list-style: none;
+  height: 25px;
+  line-height: 1.6;
+}
