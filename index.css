@@ -29,6 +29,7 @@ body {
   display: flex;
   height: 45px;
   width: 100%;
+  margin: 20px 0;
 }
 
  .inputField input {
@@ -36,4 +37,17 @@ body {
   height: 100%;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+.inputField button {
+  width: 60px;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: #8E49E8;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-left: 5px;
 }
