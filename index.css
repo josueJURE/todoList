@@ -56,4 +56,20 @@ body {
   list-style: none;
   height: 25px;
   line-height: 1.6;
+  position: relative;
+  background: #f2f2f2;
+  border-radius: 3px;
+  padding: 0 15px;
+}
+
+.todoList li span {
+  position: absolute;
+  right: 0px;
+  color: red;
+  width: 45px;
+  text-align: center;
+  background: #e74c3c;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
