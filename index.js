@@ -7,6 +7,18 @@ inputBox.onkeyup = () => {
   if(userData.trim()! = 0) {
     addBtn.classList.add("active");
   } else {
-    addBtn.classList.remove("active"); 
+    addBtn.classList.remove("active");
   }
+}
+
+addBtn.onclick = () => {
+  let userData = inputBox.value
+  let getLocalStorage = getLocalStorage.getItem("New Todo");
+  if(getLocalStorage == null) {
+    listArr = []
+  } else {
+    listArr = JSON.parse(getLocalStorage)
+  }
+  listArr.push(userData);
+  localStorage.setItem("new Todo", JSON.stringify(listArr))
 }
