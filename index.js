@@ -6,7 +6,8 @@ button.addEventListener('click', addTaskToList);
 
 function addTaskToList() {
     const element = document.createElement("div");
+    element.textContent = "";
     element.textContent = userInput.value;
     taskList.appendChild(element);
-    element.textContent = " ";
+  
 }
