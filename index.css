@@ -22,3 +22,9 @@
 button {
   border-radius: 50px;
 }
+
+#taskList {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
