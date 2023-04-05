@@ -5,9 +5,12 @@ const taskList = document.getElementById("taskList");
 add.addEventListener("click", addTaskToList);
 
 function addTaskToList() {
-  const element = document.createElement("div");
-  element.textContent = userInput.value;
-  taskList.appendChild(element);
+  taskList.innerHTML += `
+    <div class=row>
+    <input type="checkbox" />
+    <div >${userInput.value}</div>
+    <i class="fa-solid fa-trash"></i>
+    </div>`;
   userInput.value = "";
 }
 
@@ -16,4 +19,3 @@ userInput.addEventListener("keydown", function (e) {
     addTaskToList();
   }
 });
-

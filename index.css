@@ -25,6 +25,16 @@ button {
 
 #taskList {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
+}
+
+.dummy {
+  height: 15px;
+  width: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
 }
