@@ -11,14 +11,9 @@ function addTaskToList() {
   userInput.value = "";
 }
 
-// document.addEventListener("keydown", function (e) {
-//   if (e.key === 13) {
-//     addTaskToList();
-//   }
-// });
+userInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    addTaskToList();
+  }
+});
 
-// userInput.addEventListener('keydown', function(event) {
-//     if (event.keyCode === 13) {
-//         addTaskToList();
-//     }
-// });
