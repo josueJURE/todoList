@@ -35,6 +35,7 @@ function deleteTask(e) {
   let target = e.target;
   if (target.classList.contains("fa-trash")) {
     console.log("josue");
+    alert("deleting a task can't be undone")
     target.parentElement.remove();
   }
 }
