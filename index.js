@@ -3,7 +3,7 @@ const add = document.getElementById("add");
 const taskList = document.getElementById("taskList");
 
 add.addEventListener("click", addTaskToList);
-taskList.addEventListener("click", crossTaskOut)
+taskList.addEventListener("click", crossTaskOut);
 
 function addTaskToList() {
   taskList.innerHTML += `
@@ -23,11 +23,15 @@ userInput.addEventListener("keydown", function (e) {
 
 function crossTaskOut(e) {
   let target = e.target;
-  if(target.tagName === "INPUT") {
-    target.nextElementSibling.classList.toggle("lineThrough")
+  if (target.tagName === "INPUT") {
+    target.nextElementSibling.classList.toggle("lineThrough");
   }
 }
 
-// function deleteTask() {
-
-// }
+function deleteTask(e) {
+  let target = e.target;
+  if (target.tagName === "i") {
+    target.previousElementSibling.remove();
+    target.remove();
+  }
+}
