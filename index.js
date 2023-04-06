@@ -13,8 +13,9 @@ function addTaskToList() {
      </div>`;
   userInput.value = "";
 
-  const icons = document.querySelectorAll("fa-trash");
-  console.log(icons);
+  const icons = document.querySelectorAll(".fa-trash");
+  icons.forEach(icon => icon.addEventListener("click", deleteTask))
+  // console.log(icons);
 }
 
 userInput.addEventListener("keydown", function (e) {
