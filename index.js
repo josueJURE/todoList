@@ -3,14 +3,15 @@ const add = document.getElementById("add");
 const taskList = document.getElementById("taskList");
 
 add.addEventListener("click", addTaskToList);
+taskList.addEventListener("click", crossTaskOut)
 
 function addTaskToList() {
   taskList.innerHTML += `
-    <div class=row>
+     <div class=row>
     <input type="checkbox" />
     <div >${userInput.value}</div>
     <i class="fa-solid fa-trash"></i>
-    </div>`;
+     </div>`;
   userInput.value = "";
 }
 
@@ -19,3 +20,8 @@ userInput.addEventListener("keydown", function (e) {
     addTaskToList();
   }
 });
+
+function crossTaskOut(e) {
+  let target = e.target;
+  target.nextElementSibling.classList.add("lineThrough")
+}

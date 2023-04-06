@@ -38,3 +38,8 @@ button {
   display: flex;
   flex-direction: row;
 }
+
+.lineThrough {
+  text-decoration: line-through;
+
+}
