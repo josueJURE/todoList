@@ -23,5 +23,11 @@ userInput.addEventListener("keydown", function (e) {
 
 function crossTaskOut(e) {
   let target = e.target;
-  target.nextElementSibling.classList.add("lineThrough")
+  if(target.tagName === "INPUT") {
+    target.nextElementSibling.classList.toggle("lineThrough")
+  }
 }
+
+// function deleteTask() {
+
+// }
