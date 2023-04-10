@@ -5,6 +5,10 @@ add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 
 function addTaskToList() {
+  if ((userInput.value === "")) {
+    alert("please fill in input box");
+    return;
+  }
   taskList.innerHTML += `
      <div class=row>
     <input type="checkbox" />
@@ -14,7 +18,7 @@ function addTaskToList() {
   userInput.value = "";
 
   const icons = document.querySelectorAll(".fa-trash");
-  icons.forEach(icon => icon.addEventListener("click", deleteTask))
+  icons.forEach((icon) => icon.addEventListener("click", deleteTask));
   // console.log(icons);
 }
 
@@ -35,7 +39,7 @@ function deleteTask(e) {
   let target = e.target;
   if (target.classList.contains("fa-trash")) {
     console.log("josue");
-    alert("deleting a task can't be undone")
+    alert("deleting a task can't be undone");
     target.parentElement.remove();
   }
 }
