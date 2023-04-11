@@ -5,7 +5,7 @@ add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 
 function addTaskToList() {
-  if ((userInput.value === "")) {
+  if (userInput.value === "") {
     alert("please fill in input box");
     return;
   }
@@ -42,4 +42,8 @@ function deleteTask(e) {
     alert("deleting a task can't be undone");
     target.parentElement.remove();
   }
+}
+
+function getTasksFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("tasks") || "[]");
 }
