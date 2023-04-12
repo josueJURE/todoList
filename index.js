@@ -52,6 +52,18 @@ function deleteTask(e) {
   }
 }
 
+function loadTasksFromLocalStorage() {
+  const tasks = getTasksFromLocalStorage();
+  tasks.forEach(task => {
+    taskList.innerHTML += `
+    <div class="row" data-id="${task.id}">
+       <input type="checkbox" ${task.completed ? 'checked' : ''} />
+       <div class="${task.completed ? 'lineThrough' : ''}">${task.text}</div>
+       <i class="fa-solid fa-trash"></i>
+    </div>`;
+  })
+}
+
 function getTasksFromLocalStorage() {
   return JSON.parse(localStorage.getItem("tasks") || "[]");
 }
