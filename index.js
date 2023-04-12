@@ -17,6 +17,8 @@ function addTaskToList() {
     completed: false,
   };
 
+  addTaskToLocalStorage(task)
+
   taskList.innerHTML += `
      <div class=row>
     <input type="checkbox" />
@@ -62,6 +64,12 @@ function loadTasksFromLocalStorage() {
        <i class="fa-solid fa-trash"></i>
     </div>`;
   })
+}
+
+function addTaskToLocalStorage(task) {
+  const tasks = getTasksFromLocalStorage();
+  tasks.push(task);
+  localStorage.setItem("tasks", JSON.stringify(tasks))
 }
 
 function getTasksFromLocalStorage() {
