@@ -10,6 +10,13 @@ function addTaskToList() {
     alert("please fill in input box");
     return;
   }
+
+  const task = {
+    id: new Date().getTime(),
+    text: userInput.value,
+    completed: false,
+  };
+
   taskList.innerHTML += `
      <div class=row>
     <input type="checkbox" />
