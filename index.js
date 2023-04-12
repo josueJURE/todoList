@@ -41,6 +41,9 @@ userInput.addEventListener("keydown", function (e) {
 function crossTaskOut(e) {
   let target = e.target;
   if (target.tagName === "INPUT") {
+    const id = target.parentElement.dataset.id;
+    const taskDone = target.checked;
+    toggleTaskCompletionInLocalStorage(id, completed);
     target.nextElementSibling.classList.toggle("lineThrough");
   }
 }
