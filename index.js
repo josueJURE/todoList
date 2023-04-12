@@ -17,7 +17,7 @@ function addTaskToList() {
     completed: false,
   };
 
-  addTaskToLocalStorage(task)
+  addTaskToLocalStorage(task);
 
   taskList.innerHTML += `
   <div class="row" data-id="${task.id}">
@@ -26,6 +26,8 @@ function addTaskToList() {
      <i class="fa-solid fa-trash"></i>
   </div>`;
   userInput.value = "";
+
+
 
   const icons = document.querySelectorAll(".fa-trash");
   icons.forEach((icon) => icon.addEventListener("click", deleteTask));
@@ -42,7 +44,7 @@ function crossTaskOut(e) {
   let target = e.target;
   if (target.tagName === "INPUT") {
     const id = target.parentElement.dataset.id;
-    const taskDone = target.checked;
+    const completed = target.checked;
     toggleTaskCompletionInLocalStorage(id, completed);
     target.nextElementSibling.classList.toggle("lineThrough");
   }
@@ -59,20 +61,27 @@ function deleteTask(e) {
 
 function loadTasksFromLocalStorage() {
   const tasks = getTasksFromLocalStorage();
-  tasks.forEach(task => {
+  tasks.forEach((task) => {
     taskList.innerHTML += `
     <div class="row" data-id="${task.id}">
-       <input type="checkbox" ${task.completed ? 'checked' : ''} />
-       <div class="${task.completed ? 'lineThrough' : ''}">${task.text}</div>
+       <input type="checkbox" ${task.completed ? "checked" : ""} />
+       <div class="${task.completed ? "lineThrough" : ""}">${task.text}</div>
        <i class="fa-solid fa-trash"></i>
     </div>`;
-  })
+  });
 }
 
 function addTaskToLocalStorage(task) {
   const tasks = getTasksFromLocalStorage();
   tasks.push(task);
-  localStorage.setItem("tasks", JSON.stringify(tasks))
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function toggleTaskCompletionInLocalStorage(id, completed) {
+  const tasks = getTasksFromLocalStorage();
+  const index = tasks.findIndex((task) => task.id === Number(id));
+  tasks[index].completed = completed;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function getTasksFromLocalStorage() {
