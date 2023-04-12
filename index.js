@@ -20,11 +20,11 @@ function addTaskToList() {
   addTaskToLocalStorage(task)
 
   taskList.innerHTML += `
-     <div class=row>
-    <input type="checkbox" />
-    <div >${userInput.value}</div>
-    <i class="fa-solid fa-trash"></i>
-     </div>`;
+  <div class="row" data-id="${task.id}">
+     <input type="checkbox" />
+     <div>${task.text}</div>
+     <i class="fa-solid fa-trash"></i>
+  </div>`;
   userInput.value = "";
 
   const icons = document.querySelectorAll(".fa-trash");
