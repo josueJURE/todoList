@@ -41,13 +41,26 @@ button {
   width: 15px;
 }
 
-.row {
+/* .row {
   display: flex;
   flex-direction: row;
   gap: 10px;
-}
+} */
 
 .lineThrough {
   text-decoration: line-through;
 
 }
+
+.row {
+  display: flex;
+  align-items: center;
+  height: 30px; /* Set a fixed height for the row */
+  gap: 10px;
+}
+
+.row div {
+  flex-grow: 1; /* Allow the task text to fill the remaining space */
+}
+
+
