@@ -51,7 +51,8 @@ function crossTaskOut(e) {
 function deleteTask(e) {
   let target = e.target;
   if (target.classList.contains("fa-trash")) {
-    console.log("josue");
+    const id = target.parentElement.dataset.id;
+    deleteTaskFromLocalStorage(id);
     alert("deleting a task can't be undone");
     target.parentElement.remove();
   }
