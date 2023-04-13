@@ -1,10 +1,13 @@
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
 
+window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
-window.addEventListener("load", loadTasksFromLocalStorage);
+taskList.addEventListener("dragstart", dragElement);
+
+
 
 function addTaskToList() {
   if (userInput.value === "") {
@@ -93,4 +96,11 @@ function deleteTaskFromLocalStorage(id) {
 
 function getTasksFromLocalStorage() {
   return JSON.parse(localStorage.getItem("tasks") || "[]");
+}
+
+function dragElement(e) {
+  const target = e.target;
+  if (target.draggable) {
+    console.log("hi");
+  }
 }
