@@ -27,8 +27,6 @@ function addTaskToList() {
   </div>`;
   userInput.value = "";
 
-
-
   const icons = document.querySelectorAll(".fa-trash");
   icons.forEach((icon) => icon.addEventListener("click", deleteTask));
   // console.log(icons);
@@ -81,6 +79,13 @@ function toggleTaskCompletionInLocalStorage(id, completed) {
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
   tasks[index].completed = completed;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function deleteTaskFromLocalStorage(id) {
+  const tasks = getTasksFromLocalStorage();
+  const index = tasks.findIndex((task) => task.id === Number(id));
+  tasks.splice(index, 1);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
