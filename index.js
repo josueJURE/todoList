@@ -21,7 +21,7 @@ function addTaskToList() {
   addTaskToLocalStorage(task);
 
   taskList.innerHTML += `
-  <div class="row" data-id="${task.id}">
+  <div class="row" data-id="${task.id} draggable="true">
      <input type="checkbox" />
      <div>${task.text}</div>
      <i class="fa-solid fa-trash"></i>
@@ -63,7 +63,7 @@ function loadTasksFromLocalStorage() {
   const tasks = getTasksFromLocalStorage();
   tasks.forEach((task) => {
     taskList.innerHTML += `
-    <div class="row" data-id="${task.id}">
+    <div class="row" data-id="${task.id}" draggable="true">
        <input type="checkbox" ${task.completed ? "checked" : ""} />
        <div class="${task.completed ? "lineThrough" : ""}">${task.text}</div>
        <i class="fa-solid fa-trash"></i>
