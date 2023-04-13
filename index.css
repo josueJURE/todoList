@@ -44,6 +44,7 @@ button {
 .row {
   display: flex;
   flex-direction: row;
+  gap: 10px;
 }
 
 .lineThrough {
