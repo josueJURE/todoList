@@ -3,6 +3,7 @@ const add = document.getElementById("add");
 
 add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
+taskList.addEventListener("click", deleteTask);
 window.addEventListener("load", loadTasksFromLocalStorage);
 
 function addTaskToList() {
