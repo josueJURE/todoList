@@ -106,7 +106,7 @@ function dragElement(e) {
   if (target.draggable) {
     const dt = e.dataTransfer;
     dt.setData("text/html", target.innerHTML);
-    dt.dataTransfer.setData("text/plain", target.innerHTML);
+    // dt.dataTransfer.setData("text/plain", target.innerHTML);
     e.dataTransfer.effectAllowed = "move";
 
     console.log(typeof target.innerHTML, e);
@@ -115,13 +115,19 @@ function dragElement(e) {
 
 function dragElementOver(e) {
   const target = e.target;
-  if(target.draggable) {
-    e.preventDefault()
+  if (target.draggable) {
+    e.preventDefault();
     console.log("over")
   }
 }
 
-
+function enterElement(e) {
+  const target = e.target;
+  if (target.draggable) {
+    e.preventDefault();
+    console.log("enter")
+  }
+}
 
 function generateDigitForEachTask(id) {
   const tasks = getTasksFromLocalStorage();
