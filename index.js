@@ -112,6 +112,14 @@ function dragElement(e) {
   }
 }
 
+function dragElementOver(e) {
+  const target = e.target;
+  if(target.draggable) {
+    e.preventDefault()
+    console.log("over")
+  }
+}
+
 
 
 function generateDigitForEachTask(id) {
