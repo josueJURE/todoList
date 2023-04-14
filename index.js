@@ -106,6 +106,8 @@ function dragElement(e) {
     const dt = e.dataTransfer
     dt.setData("text/html", target.innerHTML)
     dt.dataTransfer.setData("text/plain", target.innerHTML)
+    e.dataTransfer.effectAllowed = "move";
+
     console.log(typeof target.innerHTML, e );
   }
 }
