@@ -21,8 +21,10 @@ function addTaskToList() {
 
   addTaskToLocalStorage(task);
 
+
   taskList.innerHTML += `
   <div class="row" data-id="${task.id} draggable="true">
+     <div>${generateDigitForEachTask(task.id)}</div>
      <input type="checkbox" />
      <div>${task.text}</div>
      <i class="fa-solid fa-trash"></i>
@@ -103,4 +105,10 @@ function dragElement(e) {
   if (target.draggable) {
     console.log("hi");
   }
+}
+
+function generateDigitForEachTask(id) {
+  const tasks = getTasksFromLocalStorage();
+  const index = tasks.findIndex((task) => task.id === Number(id));
+  return index + 1;
 }
