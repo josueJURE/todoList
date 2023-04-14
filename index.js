@@ -6,6 +6,7 @@ add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
 taskList.addEventListener("dragstart", dragElement);
+taskList.addEventListener("dragover", dragElementOver);
 
 function addTaskToList() {
   if (userInput.value === "") {
@@ -20,7 +21,6 @@ function addTaskToList() {
   };
 
   addTaskToLocalStorage(task);
-
 
   taskList.innerHTML += `
   <div class="row" data-id="${task.id} draggable="true">
@@ -103,14 +103,16 @@ function getTasksFromLocalStorage() {
 function dragElement(e) {
   const target = e.target;
   if (target.draggable) {
-    const dt = e.dataTransfer
-    dt.setData("text/html", target.innerHTML)
-    dt.dataTransfer.setData("text/plain", target.innerHTML)
+    const dt = e.dataTransfer;
+    dt.setData("text/html", target.innerHTML);
+    dt.dataTransfer.setData("text/plain", target.innerHTML);
     e.dataTransfer.effectAllowed = "move";
 
-    console.log(typeof target.innerHTML, e );
+    console.log(typeof target.innerHTML, e);
   }
 }
+
+
 
 function generateDigitForEachTask(id) {
   const tasks = getTasksFromLocalStorage();
