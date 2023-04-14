@@ -103,8 +103,10 @@ function getTasksFromLocalStorage() {
 function dragElement(e) {
   const target = e.target;
   if (target.draggable) {
-    e.dataTransfer.setData("text/plain", target.innerHTML)
-    console.log(typeof target.innerHTML);
+    const dt = e.dataTransfer
+    dt.setData("text/html", target.innerHTML)
+    dt.dataTransfer.setData("text/plain", target.innerHTML)
+    console.log(typeof target.innerHTML, e );
   }
 }
 
