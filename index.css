@@ -55,13 +55,15 @@ button {
   gap: 10px;
 }
 
-  /* Allow the task text to fill the remaining space */
-
-.row .fa-trash {
-  flex-grow: 1; 
+.row {
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
+
+.row > .fa-trash {
+  margin-left: auto;
+}
+
 
 
 
