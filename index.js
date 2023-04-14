@@ -7,8 +7,6 @@ taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
 taskList.addEventListener("dragstart", dragElement);
 
-
-
 function addTaskToList() {
   if (userInput.value === "") {
     alert("please fill in input box");
@@ -64,9 +62,11 @@ function deleteTask(e) {
 
 function loadTasksFromLocalStorage() {
   const tasks = getTasksFromLocalStorage();
-  tasks.forEach((task) => {
+  tasks.forEach((task, index) => {
     taskList.innerHTML += `
+   
     <div class="row" data-id="${task.id}" draggable="true">
+      <div>${index + 1}</div>
        <input type="checkbox" ${task.completed ? "checked" : ""} />
        <div class="${task.completed ? "lineThrough" : ""}">${task.text}</div>
        <i class="fa-solid fa-trash"></i>
