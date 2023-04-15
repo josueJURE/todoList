@@ -69,6 +69,10 @@ button {
   margin-left: auto;
 }
 
+.dragging {
+  opacity: 0.5;
+}
+
 
 
 

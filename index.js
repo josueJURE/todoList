@@ -9,6 +9,7 @@ taskList.addEventListener("click", deleteTask);
 taskList.addEventListener("dragstart", dragElement);
 taskList.addEventListener("dragover", dragElementOver);
 taskList.addEventListener("dragenter", enterElement);
+taskList.addEventListener("dragend", dragElementEnd)
 taskList.addEventListener("drop", dropElement);
 button.addEventListener("click", deleteAllTasks);
 
@@ -116,6 +117,7 @@ function getTasksFromLocalStorage() {
 function dragElement(e) {
   const target = e.target;
   if (target.draggable) {
+    target.classList.add("dragging")
     const dt = e.dataTransfer;
     dt.setData("text/html", target.innerHTML);
     e.dataTransfer.effectAllowed = "move";
@@ -137,9 +139,11 @@ function enterElement(e) {
   }
 }
 
+
 function dropElement(e) {
   e.preventDefault();
   const target = e.target;
+  console.log(e)
  
   if (target.classList.contains("dropzone")) {
     const beingDragged = e.dataTransfer.getData("text/html");
