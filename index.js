@@ -1,5 +1,7 @@
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
+const button = document.querySelector("button")
+
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
