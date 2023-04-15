@@ -118,7 +118,6 @@ function dragElement(e) {
   if (target.draggable) {
     const dt = e.dataTransfer;
     dt.setData("text/html", target.innerHTML);
-    // dt.dataTransfer.setData("text/plain", target.innerHTML);
     e.dataTransfer.effectAllowed = "move";
   }
 }
@@ -127,6 +126,7 @@ function dragElementOver(e) {
   const target = e.target;
   if (target.draggable) {
     e.preventDefault();
+    e.dataTransfer.effectAllowed = "move";
   }
 }
 
@@ -140,29 +140,21 @@ function enterElement(e) {
 function dropElement(e) {
   e.preventDefault();
   const target = e.target;
-  e.dataTransfer.dropEffect = "move";
+ 
   if (target.classList.contains("dropzone")) {
     const beingDragged = e.dataTransfer.getData("text/html");
-    console.log({ dragged: beingDragged, dropzone: target });
-    beingDragged.parentNode.removeChild(beingDragged);
-    target.appendChild(beingDragged);
+    e.dataTransfer.dropEffect = "move";
+    console.log(typeof beingDragged);
+    console.log({ beingDragged: beingDragged, target: target });
+    Array.from(target.children).forEach(div => {
+      div.remove();
+      console.log("josue")
+    });
+    target.insertAdjacentHTML("beforeend", beingDragged);
+   
   }
 }
 
-/*
-https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/dropEffect
-https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event
-*/
-
-// target.addEventListener("drop", (event) => {
-//   // prevent default action (open as link for some elements)
-//   event.preventDefault();
-//   // move dragged element to the selected drop target
-//   if (event.target.className === "dropzone") {
-//     dragged.parentNode.removeChild(dragged);
-//     event.target.appendChild(dragged);
-//   }
-// });
 
 function generateDigitForEachTask(id) {
   const tasks = getTasksFromLocalStorage();
