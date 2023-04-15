@@ -8,7 +8,7 @@ taskList.addEventListener("click", deleteTask);
 taskList.addEventListener("dragstart", dragElement);
 taskList.addEventListener("dragover", dragElementOver);
 taskList.addEventListener("dragenter", enterElement);
-taskList.addEventListener("drop", dropElement)
+taskList.addEventListener("drop", dropElement);
 
 function addTaskToList() {
   if (userInput.value === "") {
@@ -25,7 +25,7 @@ function addTaskToList() {
   addTaskToLocalStorage(task);
 
   taskList.innerHTML += `
-  <div class="row" data-id="${task.id} draggable="true">
+  <div class="row dropzone" data-id="${task.id} draggable="true">
      <div>${generateDigitForEachTask(task.id)}</div>
      <input type="checkbox" />
      <div>${task.text}</div>
@@ -69,7 +69,7 @@ function loadTasksFromLocalStorage() {
   tasks.forEach((task) => {
     taskList.innerHTML += `
    
-    <div class="row" data-id="${task.id}" draggable="true">
+    <div class="row dropzone"" data-id="${task.id}" draggable="true">
       <div>${generateDigitForEachTask(task.id)}</div>
        <input type="checkbox" ${task.completed ? "checked" : ""} />
        <div class="${task.completed ? "lineThrough" : ""}">${task.text}</div>
@@ -109,8 +109,6 @@ function dragElement(e) {
     dt.setData("text/html", target.innerHTML);
     // dt.dataTransfer.setData("text/plain", target.innerHTML);
     e.dataTransfer.effectAllowed = "move";
-
-    console.log(typeof target.innerHTML, e);
   }
 }
 
@@ -118,7 +116,6 @@ function dragElementOver(e) {
   const target = e.target;
   if (target.draggable) {
     e.preventDefault();
-    console.log("over")
   }
 }
 
@@ -126,9 +123,35 @@ function enterElement(e) {
   const target = e.target;
   if (target.draggable) {
     e.preventDefault();
-    console.log("enter")
   }
 }
+
+function dropElement(e) {
+  e.preventDefault();
+  const target = e.target;
+  e.dataTransfer.dropEffect = "move";
+  if (target.classList.contains("dropzone")) {
+    const beingDragged = e.dataTransfer.getData("text/html");
+    console.log({ dragged: beingDragged, dropzone: target });
+    beingDragged.parentNode.removeChild(beingDragged);
+    target.appendChild(beingDragged);
+  }
+}
+
+/*
+https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/dropEffect
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event
+*/
+
+// target.addEventListener("drop", (event) => {
+//   // prevent default action (open as link for some elements)
+//   event.preventDefault();
+//   // move dragged element to the selected drop target
+//   if (event.target.className === "dropzone") {
+//     dragged.parentNode.removeChild(dragged);
+//     event.target.appendChild(dragged);
+//   }
+// });
 
 function generateDigitForEachTask(id) {
   const tasks = getTasksFromLocalStorage();
