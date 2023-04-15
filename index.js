@@ -11,6 +11,7 @@ taskList.addEventListener("dragstart", dragElement);
 taskList.addEventListener("dragover", dragElementOver);
 taskList.addEventListener("dragenter", enterElement);
 taskList.addEventListener("drop", dropElement);
+button.addEventListener("click", deleteAllTask)
 
 function addTaskToList() {
   if (userInput.value === "") {
