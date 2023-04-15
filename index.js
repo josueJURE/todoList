@@ -1,7 +1,6 @@
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
-const button = document.querySelector("button")
-
+const button = document.querySelector("button");
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
@@ -11,9 +10,13 @@ taskList.addEventListener("dragstart", dragElement);
 taskList.addEventListener("dragover", dragElementOver);
 taskList.addEventListener("dragenter", enterElement);
 taskList.addEventListener("drop", dropElement);
-button.addEventListener("click", deleteAllTasks)
+button.addEventListener("click", deleteAllTasks);
 
 function deleteAllTasks() {
+  if (taskList.innerHTML === "") {
+    alert("you have no task in your todo list");
+    return;
+  }
   taskList.innerHTML = "";
   localStorage.clear();
 }
