@@ -139,6 +139,11 @@ function enterElement(e) {
   }
 }
 
+function dragElementEnd(e) {
+  const target = e.target;
+  target.classList.remove("dragging")
+}
+
 
 function dropElement(e) {
   e.preventDefault();
