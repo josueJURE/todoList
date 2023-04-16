@@ -1,5 +1,3 @@
-// Default SortableJS
-import Sortable from 'sortablejs';
 
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
@@ -46,8 +44,10 @@ function addTaskToList() {
 
   const icons = document.querySelectorAll(".fa-trash");
   icons.forEach((icon) => icon.addEventListener("click", deleteTask));
-  // console.log(icons);
 
+  new Sortable(taskList, {
+    animation: 150,
+  });
 }
 
 userInput.addEventListener("keydown", function (e) {
