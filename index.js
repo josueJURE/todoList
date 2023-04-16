@@ -6,11 +6,8 @@ window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
-taskList.addEventListener("dragstart", dragElement);
-taskList.addEventListener("dragover", dragElementOver);
-taskList.addEventListener("dragenter", enterElement);
-taskList.addEventListener("dragend", dragElementEnd)
-taskList.addEventListener("drop", dropElement);
+
+
 button.addEventListener("click", deleteAllTasks);
 
 function deleteAllTasks() {
@@ -160,6 +157,7 @@ function dropElement(e) {
       console.log("josue")
     });
     target.insertAdjacentHTML("beforeend", beingDragged);
+    beingDragged.parentNode.insertAdjacentHTML("beforeend", target.childNodes)
    
   }
 }
