@@ -111,60 +111,10 @@ function getTasksFromLocalStorage() {
   return JSON.parse(localStorage.getItem("tasks") || "[]");
 }
 
-function dragElement(e) {
-  const target = e.target;
-  if (target.draggable) {
-    target.classList.add("dragging")
-    const dt = e.dataTransfer;
-    dt.setData("text/html", target.innerHTML);
-    e.dataTransfer.effectAllowed = "move";
-  }
-}
-
-function dragElementOver(e) {
-  const target = e.target;
-  if (target.draggable) {
-    e.preventDefault();
-    e.dataTransfer.effectAllowed = "move";
-  }
-}
-
-function enterElement(e) {
-  const target = e.target;
-  if (target.draggable) {
-    e.preventDefault();
-  }
-}
-
-function dragElementEnd(e) {
-  const target = e.target;
-  target.classList.remove("dragging")
-}
-
-
-function dropElement(e) {
-  e.preventDefault();
-  const target = e.target;
-  console.log(e)
- 
-  if (target.classList.contains("dropzone")) {
-    const beingDragged = e.dataTransfer.getData("text/html");
-    e.dataTransfer.dropEffect = "move";
-    console.log(typeof beingDragged);
-    console.log({ beingDragged: beingDragged, target: target });
-    Array.from(target.children).forEach(div => {
-      div.remove();
-      console.log("josue")
-    });
-    target.insertAdjacentHTML("beforeend", beingDragged);
-    beingDragged.parentNode.insertAdjacentHTML("beforeend", target.childNodes)
-   
-  }
-}
-
-
 function generateDigitForEachTask(id) {
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
   return index + 1;
 }
+
+
