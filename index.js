@@ -1,4 +1,3 @@
-
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
 const button = document.querySelector("button");
@@ -44,10 +43,6 @@ function addTaskToList() {
 
   const icons = document.querySelectorAll(".fa-trash");
   icons.forEach((icon) => icon.addEventListener("click", deleteTask));
-
-  new Sortable(taskList, {
-    animation: 150,
-  });
 }
 
 userInput.addEventListener("keydown", function (e) {
@@ -120,4 +115,22 @@ function generateDigitForEachTask(id) {
   return index + 1;
 }
 
-
+new Sortable(
+  taskList,
+  {
+    animation: 150,
+    onEnd: function (evt) {
+      var itemEl = evt.item.firstElementChild.innerText;  // dragged HTMLElement
+      const parentContainer = evt.to;
+      Array.from( parentContainer.children).forEach((x, index) => {
+        console.log(x.firstElementChild.innerHTML = index +1 )
+      })
+    
+  
+      evt.oldIndex;  // element's old index within old parent
+      evt.newIndex;  // element's new index within new parent
+      console.log({oldIndex: evt.oldIndex, newIndex: evt.newIndex, draggElement: itemEl, targetList: evt.to})
+      
+    },
+  },
+);
