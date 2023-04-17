@@ -25,8 +25,8 @@ function addTaskToList() {
   }
 
   const tasks = getTasksFromLocalStorage();
-  const taskExists = tasks.some((task) => task.text === userInput.value);
-  if (taskExists) {
+  const doesTaskExist = tasks.some((task) => task.text === userInput.value);
+  if (doesTaskExist) {
     alert("This task already exists in your to-do list");
     return;
   }
