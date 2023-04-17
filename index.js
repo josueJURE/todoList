@@ -118,19 +118,10 @@ function generateDigitForEachTask(id) {
 new Sortable(taskList, {
   animation: 150,
   onEnd: function (evt) {
-    var itemEl = evt.item.firstElementChild.innerText; // dragged HTMLElement
     const parentContainer = evt.to;
-    Array.from(parentContainer.children).forEach((child, index) => {
+    const parentContainerChildren = Array.from(parentContainer.children)
+    parentContainerChildren.forEach((child, index) => {
       child.firstElementChild.innerHTML = index + 1;
-    });
-
-    evt.oldIndex; // element's old index within old parent
-    evt.newIndex; // element's new index within new parent
-    console.log({
-      oldIndex: evt.oldIndex,
-      newIndex: evt.newIndex,
-      draggElement: itemEl,
-      targetList: evt.to,
     });
   },
 });
