@@ -24,6 +24,13 @@ function addTaskToList() {
     return;
   }
 
+  const tasks = getTasksFromLocalStorage();
+  const taskExists = tasks.some((task) => task.text === userInput.value);
+  if (taskExists) {
+    alert("This task already exists in your to-do list");
+    return;
+  }
+
   const task = {
     id: new Date().getTime(),
     text: userInput.value,
@@ -119,9 +126,16 @@ new Sortable(taskList, {
   animation: 150,
   onEnd: function (evt) {
     const parentContainer = evt.to;
-    const parentContainerChildren = Array.from(parentContainer.children)
+    const parentContainerChildren = Array.from(parentContainer.children);
     parentContainerChildren.forEach((child, index) => {
       child.firstElementChild.innerHTML = index + 1;
     });
   },
 });
+
+function checkForDuplicates() {
+  const tasks = getTasksFromLocalStorage();
+  return tasks.findIndex((task) => task.text === userInput.value);
+}
+
+checkForDuplicates();
