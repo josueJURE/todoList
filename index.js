@@ -122,8 +122,8 @@ new Sortable(
     onEnd: function (evt) {
       var itemEl = evt.item.firstElementChild.innerText;  // dragged HTMLElement
       const parentContainer = evt.to;
-      Array.from( parentContainer.children).forEach((x, index) => {
-        console.log(x.firstElementChild.innerHTML = index +1 )
+      Array.from(parentContainer.children).forEach((child, index) => {
+        console.log(child.firstElementChild.innerHTML = index +1 )
       })
     
   
@@ -133,4 +133,5 @@ new Sortable(
       
     },
   },
+
 );
