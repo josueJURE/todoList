@@ -71,11 +71,11 @@ button {
   width: 15px;
 }
 
-/* .row {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-} */
+h1 {
+  color: white;
+  font-weight: 100;
+  /* font-size: 50%; */
+}
 
 .lineThrough {
   text-decoration: line-through;
