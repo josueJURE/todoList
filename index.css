@@ -25,11 +25,16 @@
 
 button {
   position: fixed;
-  bottom: 50%;
   left: 0;
-  width: 300px;
-  border: 3px solid #73ad21;
-  border-radius: 5px;
+  width: 16rem;
+  height: 5rem;
+  background-color: #3aaf9f;
+  border: none;
+  border-radius: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: #fff;
+  cursor: pointer;
 }
 
 #taskList {
