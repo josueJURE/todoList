@@ -4,7 +4,11 @@
   box-sizing: border-box;
   outline: none;
   font-family: "Open Sans", sans-serif;
-  background-color: aliceblue;
+
+}
+
+body {
+  background-image: url("to_do_list_picture.jpeg");
 }
 
 .mainContainer {
@@ -37,10 +41,25 @@ button {
   cursor: pointer;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+  width: 16rem;
+  height: 5rem; /* Set a fixed height for the row */
+  gap: 10px;
+  background-color: #3aaf9f;
+  border: none;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+
+}
+
 #taskList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
 }
 
 .dummy {
@@ -58,17 +77,7 @@ button {
   text-decoration: line-through;
 }
 
-.row {
-  display: flex;
-  align-items: center;
-  height: 30px; /* Set a fixed height for the row */
-  gap: 10px;
-}
 
-.row {
-  display: flex;
-  align-items: center;
-}
 
 .row > .fa-trash {
   margin-left: auto;
@@ -77,8 +86,3 @@ button {
 .dragging {
   opacity: 0.5;
 }
-
-
-
-
-
