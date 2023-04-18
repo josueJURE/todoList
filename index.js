@@ -1,6 +1,7 @@
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
-const button = document.querySelector("button");
+const button = document.querySelector(".fa-trash-restore-alt");
+console.log(button);
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
