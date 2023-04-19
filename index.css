@@ -125,4 +125,10 @@ input {
   display: flex;
 }
 
+.moveTopOrBottom {
+  height: 350px;
+  width: 30px;
+  background-color: aliceblue;
+
+}
 
