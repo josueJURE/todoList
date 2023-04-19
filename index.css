@@ -121,4 +121,8 @@ input {
 
 }
 
+.taskListContainer {
+  display: flex;
+}
+
 
