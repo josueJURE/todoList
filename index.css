@@ -69,6 +69,7 @@ button {
   height: 350px;
   max-height: 350px;
   overflow: auto;
+  padding-right: 30px;
 }
 
 .dummy {
