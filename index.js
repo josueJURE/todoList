@@ -76,9 +76,8 @@ function deleteTask(e) {
     deleteTaskFromLocalStorage(id);
     alert("deleting a task can't be undone");
     target.parentElement.remove();
-    document.querySelectorAll("#taskList > div").forEach((task, index) => {
-      task.firstElementChild.innerHTML = index + 1;
-    });
+    const element = document.querySelectorAll("#taskList > div");
+    updateNumbersAfterDraggingOrDeletingAtask(element)
   }
 }
 
