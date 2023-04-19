@@ -66,6 +66,9 @@ button {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  height: 350px;
+  max-height: 350px;
+  overflow: auto;
 }
 
 .dummy {
