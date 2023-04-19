@@ -97,3 +97,7 @@ h1 {
 .dragging {
   opacity: 0.5;
 }
+
+.fa-trash-restore-alt {
+  color: #fff
+}
