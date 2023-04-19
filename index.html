@@ -10,7 +10,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Open+Sans:ital,wght@1,300&family=Quicksand:wght@300;400;500;600;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Caveat&family=Open+Sans:ital,wght@1,300&family=Quicksand:wght@300;400;500;600;700&display=swap");
     </style>
 
     <title>Document</title>
@@ -20,13 +20,15 @@
       <h1>The To Do List App</h1>
       <div class="clear">
         <i class="fas fa-trash-restore-alt"></i>
-       
       </div>
-      <div id="taskList"></div>
+      <div class="taskListContainer">
+        <div id="taskList"></div>
+        <div class="moveTopOrBottom"></div>
+      </div>
       <div class="addTakSection">
         <i class="fa"></i>
         <i id="add" class="fa-solid fa-plus-circle"></i>
-        <input id="userInput" type="text" required/>
+        <input id="userInput" type="text" required />
       </div>
     </div>
   </body>
