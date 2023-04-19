@@ -131,11 +131,15 @@ new Sortable(taskList, {
   onEnd: function (evt) {
     const parentContainer = evt.to;
     const parentContainerChildren = Array.from(parentContainer.children);
-    parentContainerChildren.forEach((child, index) => {
-      child.firstElementChild.innerHTML = index + 1;
-    });
+    updateNumbersAfterDraggingOrDeletingAtask(parentContainerChildren);
   },
 });
+
+function updateNumbersAfterDraggingOrDeletingAtask(arr) {
+  arr.forEach((child, index) => {
+    child.firstElementChild.innerHTML = index + 1;
+  });
+}
 
 function checkForDuplicates() {
   const tasks = getTasksFromLocalStorage();
