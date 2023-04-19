@@ -99,5 +99,13 @@ h1 {
 }
 
 .fa-trash-restore-alt {
-  color: #fff
+  color: #fff;
+}
+
+.fa-plus-circle {
+  display: block;
+  color: #fff;
+  height: 22px;
+  width: 22px;
+  
 }
