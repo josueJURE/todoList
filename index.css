@@ -47,15 +47,11 @@ button {
 .row {
   display: flex;
   align-items: center;
-  width: 16rem;
-  height: 5rem; /* Set a fixed height for the row */
   gap: 10px;
-  background-color: #3aaf9f;
-  border: none;
-  border-radius: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  cursor: pointer;
+  /* cursor: pointer; */
+  color: #fff;
 }
 
 #taskList {

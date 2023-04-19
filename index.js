@@ -1,14 +1,13 @@
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
-const button = document.querySelector(".fa-trash-restore-alt");
-console.log(button);
+const reset = document.querySelector(".fa-trash-restore-alt");
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
 
-button.addEventListener("click", deleteAllTasks);
+reset.addEventListener("click", deleteAllTasks);
 
 function deleteAllTasks() {
   if (taskList.innerHTML === "") {
