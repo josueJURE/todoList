@@ -8,6 +8,10 @@
 
 body {
   background-image: url("to_do_list_picture.jpeg");
+  font-family: "Caveat", cursive;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Quicksand", sans-serif;
+
   /* flex-direction: column;
   justify-content: center;
   align-items: center; */
