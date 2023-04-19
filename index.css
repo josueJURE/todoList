@@ -8,6 +8,9 @@
 
 body {
   background-image: url("to_do_list_picture.jpeg");
+  /* flex-direction: column;
+  justify-content: center;
+  align-items: center; */
 }
 
 .mainContainer {
@@ -24,10 +27,7 @@ body {
 
 .addTakSection {
   position: fixed;
-  bottom: 50%;
-  right: 0;
-  width: 300px;
-  border: 3px solid #73ad21;
+  bottom: 0;
 }
 
 button {
