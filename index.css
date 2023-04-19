@@ -107,5 +107,11 @@ h1 {
   color: #fff;
   height: 22px;
   width: 22px;
-  
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid #fff;
+
 }
