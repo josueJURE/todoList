@@ -70,11 +70,15 @@ function crossTaskOut(e) {
 
 function deleteTask(e) {
   let target = e.target;
+  console.log(target);
   if (target.classList.contains("fa-trash")) {
     const id = target.parentElement.dataset.id;
     deleteTaskFromLocalStorage(id);
     alert("deleting a task can't be undone");
     target.parentElement.remove();
+    document.querySelectorAll("#taskList > div").forEach((task, index) => {
+      task.firstElementChild.innerHTML = index + 1;
+    });
   }
 }
 
