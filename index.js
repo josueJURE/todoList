@@ -9,7 +9,7 @@ window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
-arrowUp.addEventListener("click", scrollUp);
+arrowUp.addEventListener("click", scrollAllTheWayUp);
 arrowDown.addEventListener("click", scrollAllTheWayDown);
 
 reset.addEventListener("click", deleteAllTasks);
@@ -164,7 +164,7 @@ function toggleElementVisibility(element) {
   element.classList.toggle("showBar");
 }
 
-function scrollUp() {
+function scrollAllTheWayUp() {
   taskList.scroll({
     top: 0,
     behavior: "smooth"
