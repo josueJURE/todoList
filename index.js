@@ -10,6 +10,7 @@ add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
 arrowUp.addEventListener("click", scrollUp);
+arrowDown.addEventListener("click", scrollAlltheWayUp)
 
 reset.addEventListener("click", deleteAllTasks);
 
