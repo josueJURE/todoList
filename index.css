@@ -129,9 +129,21 @@ input {
   height: 350px;
   width: 30px;
   background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .showBar {
   visibility: hidden;
+}
+
+.fa-arrow-up {
+  margin-top: 0;
+}
+
+.fa-arrow-down {
+  margin-bottom: 0;
 }
 

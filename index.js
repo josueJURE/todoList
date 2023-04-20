@@ -79,6 +79,8 @@ function crossTaskOut(e) {
 function deleteTask(e) {
   let target = e.target;
   const container = document.querySelectorAll("#taskList > div");
+  console.log(container.length)
+  container.length
   if (target.classList.contains("fa-trash")) {
     const id = target.parentElement.dataset.id;
     deleteTaskFromLocalStorage(id);
