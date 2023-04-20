@@ -152,9 +152,7 @@ function checkForDuplicates() {
 }
 
 function toggleElementVisibility(element) {
-  if (element.length > 7) {
-    element.classList.toggle("showBar");
-  }
+  element.classList.toggle("showBar");
 }
 
 checkForDuplicates();
