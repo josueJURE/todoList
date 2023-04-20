@@ -12,6 +12,8 @@ window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
+arrowDown.addEventListener("click", scrollUp);
+
 
 reset.addEventListener("click", deleteAllTasks);
 
