@@ -2,7 +2,7 @@ const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
 const reset = document.querySelector(".fa-trash-restore-alt");
 const moveTopOrBottom = document.querySelector(".moveTopOrBottom");
-console.log(moveTopOrBottom)
+console.log(moveTopOrBottom);
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
@@ -78,16 +78,15 @@ function crossTaskOut(e) {
 
 function deleteTask(e) {
   let target = e.target;
-  const element = document.querySelectorAll("#taskList > div");
+  const container = document.querySelectorAll("#taskList > div");
   if (target.classList.contains("fa-trash")) {
     const id = target.parentElement.dataset.id;
     deleteTaskFromLocalStorage(id);
     // alert("deleting a task can't be undone");
     target.parentElement.remove();
-    updateNumbersAfterDraggingOrDeletingAtask(element);
-    console.log(element);
+    updateNumbersAfterDraggingOrDeletingAtask(container);
   }
-  if(element.length < 8) {
+  if (container.length < 8) {
     toggleElementVisibility(moveTopOrBottom);
   }
 }
