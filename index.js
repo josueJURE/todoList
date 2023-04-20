@@ -173,9 +173,21 @@ function scrollAllTheWayUp() {
 
 function scrollAllTheWayDown() {
   taskList.scroll({
-    bottom: 0,
+    top: taskList.scrollHeight,
     behavior: "smooth"
   })
 }
+
+// const arrowDown = document.querySelector(".fa-arrow-down");
+
+// arrowDown.addEventListener("click", scrollToBottom);
+
+// function scrollToBottom() {
+//   window.scrollTo({
+//     top: document.body.scrollHeight,
+//     behavior: "smooth"
+//   });
+// }
+
 
 checkForDuplicates();
