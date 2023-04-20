@@ -1,7 +1,8 @@
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
 const reset = document.querySelector(".fa-trash-restore-alt");
-const moveTopOrBottom = document.querySelector("moveTopOrBottom");
+const moveTopOrBottom = document.querySelector(".moveTopOrBottom");
+console.log(moveTopOrBottom)
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
@@ -53,7 +54,7 @@ function addTaskToList() {
   icons.forEach((icon) => icon.addEventListener("click", deleteTask));
 
   if (taskList.children.length > 7) {
-    toggleElementVisibility();
+    toggleElementVisibility(moveTopOrBottom);
   }
 
   console.log(taskList.children.length);
@@ -77,15 +78,18 @@ function crossTaskOut(e) {
 
 function deleteTask(e) {
   let target = e.target;
-  console.log(target);
+  const element = document.querySelectorAll("#taskList > div");
   if (target.classList.contains("fa-trash")) {
     const id = target.parentElement.dataset.id;
     deleteTaskFromLocalStorage(id);
-    alert("deleting a task can't be undone");
+    // alert("deleting a task can't be undone");
     target.parentElement.remove();
-    const element = document.querySelectorAll("#taskList > div");
     updateNumbersAfterDraggingOrDeletingAtask(element);
+    console.log(element);
   }
+  // if(element.length < 8) {
+  //   toggleElementVisibility(moveTopOrBottom)
+  // }
 }
 
 function loadTasksFromLocalStorage() {

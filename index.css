@@ -129,10 +129,9 @@ input {
   height: 350px;
   width: 30px;
   background-color: aliceblue;
-  visibility: hidden;
 }
 
 .showBar {
-  visibility: visible;
+  visibility: hidden;
 }
 
