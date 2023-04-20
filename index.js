@@ -145,4 +145,12 @@ function checkForDuplicates() {
   return tasks.findIndex((task) => task.text === userInput.value);
 }
 
+function toggleElementVisibility(element) {
+  if(element.length > 7) {
+    element.classList.toggle("showBar ");
+  }
+}
+
+toggleElementVisibility();
+
 checkForDuplicates();
