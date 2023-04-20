@@ -10,7 +10,7 @@ add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
 arrowUp.addEventListener("click", scrollUp);
-arrowDown.addEventListener("click", scrollAlltheWayUp)
+arrowDown.addEventListener("click", scrollAllTheWayDown);
 
 reset.addEventListener("click", deleteAllTasks);
 
@@ -167,6 +167,13 @@ function toggleElementVisibility(element) {
 function scrollUp() {
   taskList.scroll({
     top: 0,
+    behavior: "smooth"
+  })
+}
+
+function scrollAllTheWayDown() {
+  taskList.scroll({
+    bottom: 0,
     behavior: "smooth"
   })
 }
