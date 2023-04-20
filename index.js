@@ -5,15 +5,11 @@ const moveTopOrBottom = document.querySelector(".moveTopOrBottom");
 const arrowUp = document.querySelector(".fa-arrow-up");
 const arrowDown = document.querySelector(".fa-arrow-down");
 
-
-
-
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
-arrowDown.addEventListener("click", scrollUp);
-
+arrowUp.addEventListener("click", scrollUp);
 
 reset.addEventListener("click", deleteAllTasks);
 
@@ -85,8 +81,8 @@ function crossTaskOut(e) {
 function deleteTask(e) {
   let target = e.target;
   const container = document.querySelectorAll("#taskList > div");
-  console.log(container.length)
-  container.length
+  console.log(container.length);
+  container.length;
   if (target.classList.contains("fa-trash")) {
     const id = target.parentElement.dataset.id;
     deleteTaskFromLocalStorage(id);
@@ -165,6 +161,13 @@ function checkForDuplicates() {
 
 function toggleElementVisibility(element) {
   element.classList.toggle("showBar");
+}
+
+function scrollUp() {
+  taskList.scroll({
+    top: 0,
+    behavior: "smooth"
+  })
 }
 
 checkForDuplicates();
