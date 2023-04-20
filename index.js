@@ -50,6 +50,12 @@ function addTaskToList() {
 
   const icons = document.querySelectorAll(".fa-trash");
   icons.forEach((icon) => icon.addEventListener("click", deleteTask));
+
+  if (taskList.children.length > 7) {
+    toggleElementVisibility();
+  }
+
+  console.log(taskList.children.length);
 }
 
 userInput.addEventListener("keydown", function (e) {
@@ -77,7 +83,7 @@ function deleteTask(e) {
     alert("deleting a task can't be undone");
     target.parentElement.remove();
     const element = document.querySelectorAll("#taskList > div");
-    updateNumbersAfterDraggingOrDeletingAtask(element)
+    updateNumbersAfterDraggingOrDeletingAtask(element);
   }
 }
 
@@ -146,11 +152,9 @@ function checkForDuplicates() {
 }
 
 function toggleElementVisibility(element) {
-  if(element.length > 7) {
+  if (element.length > 7) {
     element.classList.toggle("showBar");
   }
 }
-
-toggleElementVisibility();
 
 checkForDuplicates();
