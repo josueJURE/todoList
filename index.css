@@ -132,5 +132,7 @@ input {
   visibility: hidden;
 }
 
-
+.showBar {
+  visibility: visible;
+}
 
