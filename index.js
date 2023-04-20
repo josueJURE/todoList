@@ -2,7 +2,11 @@ const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
 const reset = document.querySelector(".fa-trash-restore-alt");
 const moveTopOrBottom = document.querySelector(".moveTopOrBottom");
-console.log(moveTopOrBottom);
+const arrowUp = document.querySelector(".fa-arrow-up");
+const arrowDown = document.querySelector(".fa-arrow-down");
+
+
+
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);

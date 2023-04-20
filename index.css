@@ -127,7 +127,7 @@ input {
 
 .moveTopOrBottom {
   height: 350px;
-  width: 30px;
+  width: 14px;
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
