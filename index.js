@@ -87,9 +87,9 @@ function deleteTask(e) {
     updateNumbersAfterDraggingOrDeletingAtask(element);
     console.log(element);
   }
-  // if(element.length < 8) {
-  //   toggleElementVisibility(moveTopOrBottom)
-  // }
+  if(element.length < 8) {
+    toggleElementVisibility(moveTopOrBottom);
+  }
 }
 
 function loadTasksFromLocalStorage() {
