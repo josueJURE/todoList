@@ -146,6 +146,17 @@ new Sortable(taskList, {
     const parentContainer = evt.to;
     const parentContainerChildren = Array.from(parentContainer.children);
     updateNumbersAfterDraggingOrDeletingAtask(parentContainerChildren);
+
+    const tasks = getTasksFromLocalStorage();
+    const oldIndex = evt.oldDraggableIndex;
+    let newIndex = evt.newDraggableIndex;
+
+    const dragged = tasks[oldIndex];
+
+    tasks.splice(oldIndex, 1);
+    tasks.splice(newIndex, 0, dragged);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   },
 });
 
@@ -167,15 +178,15 @@ function toggleElementVisibility(element) {
 function scrollAllTheWayUp() {
   taskList.scroll({
     top: 0,
-    behavior: "smooth"
-  })
+    behavior: "smooth",
+  });
 }
 
 function scrollAllTheWayDown() {
   taskList.scroll({
     top: taskList.scrollHeight,
-    behavior: "smooth"
-  })
+    behavior: "smooth",
+  });
 }
 
 // const arrowDown = document.querySelector(".fa-arrow-down");
@@ -188,6 +199,5 @@ function scrollAllTheWayDown() {
 //     behavior: "smooth"
 //   });
 // }
-
 
 checkForDuplicates();
