@@ -14,7 +14,13 @@ arrowDown.addEventListener("click", scrollAllTheWayDown);
 
 reset.addEventListener("click", deleteAllTasks);
 
+const DEBUG = true;
+
 function deleteAllTasks() {
+  if (DEBUG) {
+    console.log("deleteAllTasks");
+  }
+
   if (taskList.innerHTML === "") {
     alert("you have no task in your todo list");
     return;
@@ -24,6 +30,10 @@ function deleteAllTasks() {
 }
 
 function addTaskToList() {
+  if (DEBUG) {
+    console.log("addTaskToList");
+  }
+
   if (userInput.value === "") {
     alert("please fill in input box");
     return;
@@ -56,9 +66,11 @@ function addTaskToList() {
   const icons = document.querySelectorAll(".fa-trash");
   icons.forEach((icon) => icon.addEventListener("click", deleteTask));
 
-  if (taskList.children.length > 7) {
-    toggleElementVisibility(moveTopOrBottom);
+  if (DEBUG) {
+    console.log("addTaskToList:", "taskList.children:", taskList.children);
   }
+  updateNumbersAfterDraggingOrDeletingAtask(taskList.children);
+  updateMoveTopBottomVisibility(taskList.children.length);
 
   console.log(taskList.children.length);
 }
@@ -70,6 +82,10 @@ userInput.addEventListener("keydown", function (e) {
 });
 
 function crossTaskOut(e) {
+  if (DEBUG) {
+    console.log("crossTaskOut");
+  }
+
   let target = e.target;
   if (target.tagName === "INPUT") {
     const id = target.parentElement.dataset.id;
@@ -80,6 +96,10 @@ function crossTaskOut(e) {
 }
 
 function deleteTask(e) {
+  if (DEBUG) {
+    console.log("deleteTask");
+  }
+
   let target = e.target;
   const container = document.querySelectorAll("#taskList > div");
   console.log(container.length);
@@ -90,13 +110,15 @@ function deleteTask(e) {
     // alert("deleting a task can't be undone");
     target.parentElement.remove();
     updateNumbersAfterDraggingOrDeletingAtask(container);
-  }
-  if (container.length < 8) {
-    toggleElementVisibility(moveTopOrBottom);
+    updateMoveTopBottomVisibility(container.length);
   }
 }
 
 function loadTasksFromLocalStorage() {
+  if (DEBUG) {
+    console.log("loadTasksFromLocalStorage");
+  }
+
   const tasks = getTasksFromLocalStorage();
   tasks.forEach((task) => {
     taskList.innerHTML += `
@@ -108,15 +130,29 @@ function loadTasksFromLocalStorage() {
        <i class="fa-solid fa-trash"></i>
     </div>`;
   });
+
+  if (DEBUG) {
+    console.log("loadTasksFromLocalStorage:", "# of tasks:", tasks.length);
+  }
+
+  updateMoveTopBottomVisibility(tasks.length);
 }
 
 function addTaskToLocalStorage(task) {
+  if (DEBUG) {
+    console.log("addTaskToLocalStorage");
+  }
+
   const tasks = getTasksFromLocalStorage();
   tasks.push(task);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function toggleTaskCompletionInLocalStorage(id, completed) {
+  if (DEBUG) {
+    console.log("toggleTaskCompletionInLocalStorage");
+  }
+
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
   tasks[index].completed = completed;
@@ -124,6 +160,10 @@ function toggleTaskCompletionInLocalStorage(id, completed) {
 }
 
 function deleteTaskFromLocalStorage(id) {
+  if (DEBUG) {
+    console.log("deleteTaskFromLocalStorage");
+  }
+
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
   tasks.splice(index, 1);
@@ -131,10 +171,18 @@ function deleteTaskFromLocalStorage(id) {
 }
 
 function getTasksFromLocalStorage() {
+  if (DEBUG) {
+    console.log("getTasksFromLocalStorage");
+  }
+
   return JSON.parse(localStorage.getItem("tasks") || "[]");
 }
 
 function generateDigitForEachTask(id) {
+  if (DEBUG) {
+    console.log("generateDigitForEachTask");
+  }
+
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
   return index + 1;
@@ -143,6 +191,10 @@ function generateDigitForEachTask(id) {
 new Sortable(taskList, {
   animation: 150,
   onEnd: function (evt) {
+    if (DEBUG) {
+      console.log("Sortable.onEnd");
+    }
+
     const parentContainer = evt.to;
     const parentContainerChildren = Array.from(parentContainer.children);
     updateNumbersAfterDraggingOrDeletingAtask(parentContainerChildren);
@@ -161,21 +213,43 @@ new Sortable(taskList, {
 });
 
 function updateNumbersAfterDraggingOrDeletingAtask(arr) {
-  arr.forEach((child, index) => {
-    child.firstElementChild.innerHTML = index + 1;
-  });
+  if (DEBUG) {
+    console.log("updateNumbersAfterDraggingOrDeletingAtask");
+  }
+
+  for (var i = 0; i < arr.length; i++) {
+    arr[i].firstElementChild.innerHTML = i + 1;
+  }
 }
 
 function checkForDuplicates() {
+  if (DEBUG) {
+    console.log("checkForDuplicates");
+  }
+
   const tasks = getTasksFromLocalStorage();
   return tasks.findIndex((task) => task.text === userInput.value);
 }
 
-function toggleElementVisibility(element) {
-  element.classList.toggle("showBar");
+function updateMoveTopBottomVisibility(numberOfItems) {
+  if (DEBUG) {
+    console.log("setMoveTopBottomVisibility:", "# of items:", numberOfItems);
+  }
+
+  if (numberOfItems < 8) {
+    if (!moveTopOrBottom.classList.contains("hideBar")) {
+      moveTopOrBottom.classList.add("hideBar");
+    }
+  } else {
+    moveTopOrBottom.classList.remove("hideBar");
+  }
 }
 
 function scrollAllTheWayUp() {
+  if (DEBUG) {
+    console.log("scrollAllTheWayUp");
+  }
+
   taskList.scroll({
     top: 0,
     behavior: "smooth",
@@ -183,6 +257,10 @@ function scrollAllTheWayUp() {
 }
 
 function scrollAllTheWayDown() {
+  if (DEBUG) {
+    console.log("scrollAllTheWayDown");
+  }
+
   taskList.scroll({
     top: taskList.scrollHeight,
     behavior: "smooth",

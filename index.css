@@ -118,7 +118,6 @@ input {
   border: none;
   border-top: 1px solid #fff;
   color: #fff;
-
 }
 
 .taskListContainer {
@@ -135,7 +134,7 @@ input {
   align-items: center;
 }
 
-.showBar {
+.hideBar {
   visibility: hidden;
 }
 
@@ -146,4 +145,3 @@ input {
 .fa-arrow-down {
   margin-bottom: 0;
 }
-
