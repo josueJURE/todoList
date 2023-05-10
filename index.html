@@ -9,24 +9,34 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Caveat&family=Open+Sans:ital,wght@1,300&family=Quicksand:wght@300;400;500;600;700&display=swap");
+    </style>
 
     <title>Document</title>
   </head>
   <body>
     <div class="mainContainer">
       <h1>The To Do List App</h1>
-    
-      <div id="taskList"></div>
+      <div class="clear">
+        <i class="fas fa-trash-restore-alt"></i>
+      </div>
+      <div class="taskListContainer">
+        <div id="taskList"></div>
+        <div class="moveTopOrBottom showBar">
+          <i class="fa fa-arrow-up" aria-hidden="true"></i>
+          <i class="fa fa-arrow-down" aria-hidden="true"></i>
+        </div>
+      </div>
       <div class="addTakSection">
         <i class="fa"></i>
-        <i id="add" class="fa-solid fa-plus"></i>
-        <input id="userInput" type="text" required/>
-        <button>reset</button>
-       
+        <i id="add" class="fa-solid fa-plus-circle"></i>
+        <input id="userInput" type="text" required />
       </div>
     </div>
   </body>
-  <script type="module" src="index.js"></script>
+  <script src="node_modules/sortablejs/Sortable.min.js"></script>
+  <script src="index.js"></script>
   <script
     src="https://kit.fontawesome.com/2da085e01f.js"
     crossorigin="anonymous"

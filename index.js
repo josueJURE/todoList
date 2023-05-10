@@ -1,17 +1,18 @@
 const userInput = document.getElementById("userInput");
 const add = document.getElementById("add");
-const button = document.querySelector("button");
+const reset = document.querySelector(".fa-trash-restore-alt");
+const moveTopOrBottom = document.querySelector(".moveTopOrBottom");
+const arrowUp = document.querySelector(".fa-arrow-up");
+const arrowDown = document.querySelector(".fa-arrow-down");
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
-taskList.addEventListener("dragstart", dragElement);
-taskList.addEventListener("dragover", dragElementOver);
-taskList.addEventListener("dragenter", enterElement);
-taskList.addEventListener("dragend", dragElementEnd)
-taskList.addEventListener("drop", dropElement);
-button.addEventListener("click", deleteAllTasks);
+arrowUp.addEventListener("click", scrollAllTheWayUp);
+arrowDown.addEventListener("click", scrollAllTheWayDown);
+
+reset.addEventListener("click", deleteAllTasks);
 
 function deleteAllTasks() {
   if (taskList.innerHTML === "") {
@@ -25,6 +26,13 @@ function deleteAllTasks() {
 function addTaskToList() {
   if (userInput.value === "") {
     alert("please fill in input box");
+    return;
+  }
+
+  const tasks = getTasksFromLocalStorage();
+  const doesTaskExist = tasks.some((task) => task.text === userInput.value);
+  if (doesTaskExist) {
+    alert("This task already exists in your to-do list");
     return;
   }
 
@@ -47,7 +55,12 @@ function addTaskToList() {
 
   const icons = document.querySelectorAll(".fa-trash");
   icons.forEach((icon) => icon.addEventListener("click", deleteTask));
-  // console.log(icons);
+
+  if (taskList.children.length > 7) {
+    toggleElementVisibility(moveTopOrBottom);
+  }
+
+  console.log(taskList.children.length);
 }
 
 userInput.addEventListener("keydown", function (e) {
@@ -68,11 +81,18 @@ function crossTaskOut(e) {
 
 function deleteTask(e) {
   let target = e.target;
+  const container = document.querySelectorAll("#taskList > div");
+  console.log(container.length);
+  container.length;
   if (target.classList.contains("fa-trash")) {
     const id = target.parentElement.dataset.id;
     deleteTaskFromLocalStorage(id);
-    alert("deleting a task can't be undone");
+    // alert("deleting a task can't be undone");
     target.parentElement.remove();
+    updateNumbersAfterDraggingOrDeletingAtask(container);
+  }
+  if (container.length < 8) {
+    toggleElementVisibility(moveTopOrBottom);
   }
 }
 
@@ -114,59 +134,70 @@ function getTasksFromLocalStorage() {
   return JSON.parse(localStorage.getItem("tasks") || "[]");
 }
 
-function dragElement(e) {
-  const target = e.target;
-  if (target.draggable) {
-    target.classList.add("dragging")
-    const dt = e.dataTransfer;
-    dt.setData("text/html", target.innerHTML);
-    e.dataTransfer.effectAllowed = "move";
-  }
-}
-
-function dragElementOver(e) {
-  const target = e.target;
-  if (target.draggable) {
-    e.preventDefault();
-    e.dataTransfer.effectAllowed = "move";
-  }
-}
-
-function enterElement(e) {
-  const target = e.target;
-  if (target.draggable) {
-    e.preventDefault();
-  }
-}
-
-function dragElementEnd(e) {
-  const target = e.target;
-  target.classList.remove("dragging")
-}
-
-
-function dropElement(e) {
-  e.preventDefault();
-  const target = e.target;
-  console.log(e)
- 
-  if (target.classList.contains("dropzone")) {
-    const beingDragged = e.dataTransfer.getData("text/html");
-    e.dataTransfer.dropEffect = "move";
-    console.log(typeof beingDragged);
-    console.log({ beingDragged: beingDragged, target: target });
-    Array.from(target.children).forEach(div => {
-      div.remove();
-      console.log("josue")
-    });
-    target.insertAdjacentHTML("beforeend", beingDragged);
-   
-  }
-}
-
-
 function generateDigitForEachTask(id) {
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
   return index + 1;
 }
+
+new Sortable(taskList, {
+  animation: 150,
+  onEnd: function (evt) {
+    const parentContainer = evt.to;
+    const parentContainerChildren = Array.from(parentContainer.children);
+    updateNumbersAfterDraggingOrDeletingAtask(parentContainerChildren);
+
+    const tasks = getTasksFromLocalStorage();
+    const oldIndex = evt.oldDraggableIndex;
+    let newIndex = evt.newDraggableIndex;
+
+    const dragged = tasks[oldIndex];
+
+    tasks.splice(oldIndex, 1);
+    tasks.splice(newIndex, 0, dragged);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  },
+});
+
+function updateNumbersAfterDraggingOrDeletingAtask(arr) {
+  arr.forEach((child, index) => {
+    child.firstElementChild.innerHTML = index + 1;
+  });
+}
+
+function checkForDuplicates() {
+  const tasks = getTasksFromLocalStorage();
+  return tasks.findIndex((task) => task.text === userInput.value);
+}
+
+function toggleElementVisibility(element) {
+  element.classList.toggle("showBar");
+}
+
+function scrollAllTheWayUp() {
+  taskList.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+function scrollAllTheWayDown() {
+  taskList.scroll({
+    top: taskList.scrollHeight,
+    behavior: "smooth",
+  });
+}
+
+// const arrowDown = document.querySelector(".fa-arrow-down");
+
+// arrowDown.addEventListener("click", scrollToBottom);
+
+// function scrollToBottom() {
+//   window.scrollTo({
+//     top: document.body.scrollHeight,
+//     behavior: "smooth"
+//   });
+// }
+
+checkForDuplicates();

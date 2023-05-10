@@ -4,38 +4,72 @@
   box-sizing: border-box;
   outline: none;
   font-family: "Open Sans", sans-serif;
-  background-color: aliceblue;
+}
+
+body {
+  background-image: url("to_do_list_picture.jpeg");
+  font-family: "Caveat", cursive;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Quicksand", sans-serif;
+
+  /* flex-direction: column;
+  justify-content: center;
+  align-items: center; */
 }
 
 .mainContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  width: 70%;
   height: 100vh;
-  width: 100vw;
+  margin: auto 0;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .addTakSection {
   position: fixed;
-  bottom: 50%;
-  right: 0;
-  width: 300px;
-  border: 3px solid #73ad21;
+  bottom: 0;
 }
 
 button {
   position: fixed;
-  bottom: 50%;
   left: 0;
-  width: 300px;
-  border: 3px solid #73ad21;
-  border-radius: 5px;
+  width: 16rem;
+  height: 5rem;
+  background-color: #3aaf9f;
+  border: none;
+  border-radius: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  /* cursor: pointer; */
+  color: #fff;
 }
 
 #taskList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
+  height: 350px;
+  max-height: 350px;
+  overflow: auto;
+  padding-right: 30px;
 }
 
 .dummy {
@@ -43,26 +77,21 @@ button {
   width: 15px;
 }
 
-/* .row {
+h1 {
+  color: white;
+  font-weight: 100;
+  /* font-size: 50%; */
+}
+
+.clear {
+  width: 80%;
   display: flex;
-  flex-direction: row;
-  gap: 10px;
-} */
+  justify-content: flex-end;
+  margin-bottom: 50px;
+}
 
 .lineThrough {
   text-decoration: line-through;
-}
-
-.row {
-  display: flex;
-  align-items: center;
-  height: 30px; /* Set a fixed height for the row */
-  gap: 10px;
-}
-
-.row {
-  display: flex;
-  align-items: center;
 }
 
 .row > .fa-trash {
@@ -73,7 +102,48 @@ button {
   opacity: 0.5;
 }
 
+.fa-trash-restore-alt {
+  color: #fff;
+}
 
+.fa-plus-circle {
+  display: block;
+  color: #fff;
+  height: 22px;
+  width: 22px;
+}
 
+input {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid #fff;
+  color: #fff;
 
+}
+
+.taskListContainer {
+  display: flex;
+}
+
+.moveTopOrBottom {
+  height: 350px;
+  width: 14px;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.showBar {
+  visibility: hidden;
+}
+
+.fa-arrow-up {
+  margin-top: 0;
+}
+
+.fa-arrow-down {
+  margin-bottom: 0;
+}
 
