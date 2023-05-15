@@ -134,13 +134,17 @@ function loadTasksFromLocalStorage() {
     const dropzone = document.querySelector(".dropzone");
     dropzone.addEventListener("click", editContent);
 
+    let isEditable = false;
+
     function editContent(e) {
       const element = e.target;
-      console.log(element)
       if (element.classList.contains("fa-edit")) {
         const prevSibling =
           element.previousElementSibling.previousElementSibling;
-        prevSibling.contentEditable = "true";
+        isEditable = true;
+        prevSibling.contentEditable = isEditable;
+      } else {
+        isEditable = false;
       }
     }
   });
