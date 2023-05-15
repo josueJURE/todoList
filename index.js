@@ -60,6 +60,7 @@ function addTaskToList() {
      <input type="checkbox" />
      <div>${task.text}</div>
      <i class="fa-solid fa-trash"></i>
+    //  <i class="fas fa-edit"></i>
   </div>`;
   userInput.value = "";
 
@@ -128,6 +129,7 @@ function loadTasksFromLocalStorage() {
        <input type="checkbox" ${task.completed ? "checked" : ""} />
        <div class="${task.completed ? "lineThrough" : ""}">${task.text}</div>
        <i class="fa-solid fa-trash"></i>
+       <i class="fas fa-edit"></i>
     </div>`;
   });
 
