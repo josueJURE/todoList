@@ -121,6 +121,7 @@ function loadTasksFromLocalStorage() {
 
   const tasks = getTasksFromLocalStorage();
   tasks.forEach((task) => {
+    console.log(taskList)
     taskList.innerHTML += `
    
     <div class="row dropzone"" data-id="${task.id}" draggable="true">
@@ -131,8 +132,8 @@ function loadTasksFromLocalStorage() {
        <i class="fas fa-edit"></i>
     </div>`;
 
-    const dropzone = document.querySelector(".dropzone");
-    dropzone.addEventListener("click", editContent);
+    
+    taskList.addEventListener("click", editContent);
 
     let isEditable = false;
 
