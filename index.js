@@ -14,7 +14,7 @@ arrowDown.addEventListener("click", scrollAllTheWayDown);
 
 reset.addEventListener("click", deleteAllTasks);
 
-const DEBUG = true;
+const DEBUG = false;
 
 function deleteAllTasks() {
   if (DEBUG) {
@@ -54,14 +54,14 @@ function addTaskToList() {
 
   addTaskToLocalStorage(task);
 
-  taskList.innerHTML += `
-  <div class="row dropzone" data-id="${task.id} draggable="true">
-     <div>${generateDigitForEachTask(task.id)}</div>
-     <input type="checkbox" />
-     <div>${task.text}</div>
-     <i class="fa-solid fa-trash"></i>
-    //  <i class="fas fa-edit"></i>
-  </div>`;
+  // taskList.innerHTML += `
+  // <div class="row dropzone" data-id="${task.id} draggable="true">
+  //    <div>${generateDigitForEachTask(task.id)}</div>
+  //    <input type="checkbox" />
+  //    <div>${task.text}</div>
+  //    <i class="fa-solid fa-trash"></i>
+  //    <i class="fas fa-edit"></i>
+  // </div>`;
   userInput.value = "";
 
   const icons = document.querySelectorAll(".fa-trash");
@@ -103,7 +103,6 @@ function deleteTask(e) {
 
   let target = e.target;
   const container = document.querySelectorAll("#taskList > div");
-  console.log(container.length);
   container.length;
   if (target.classList.contains("fa-trash")) {
     const id = target.parentElement.dataset.id;
@@ -131,6 +130,19 @@ function loadTasksFromLocalStorage() {
        <i class="fa-solid fa-trash"></i>
        <i class="fas fa-edit"></i>
     </div>`;
+
+    const dropzone = document.querySelector(".dropzone");
+    dropzone.addEventListener("click", editContent);
+
+    function editContent(e) {
+      const element = e.target;
+      console.log(element)
+      if (element.classList.contains("fa-edit")) {
+        const prevSibling =
+          element.previousElementSibling.previousElementSibling;
+        prevSibling.contentEditable = "true";
+      }
+    }
   });
 
   if (DEBUG) {
@@ -268,16 +280,5 @@ function scrollAllTheWayDown() {
     behavior: "smooth",
   });
 }
-
-// const arrowDown = document.querySelector(".fa-arrow-down");
-
-// arrowDown.addEventListener("click", scrollToBottom);
-
-// function scrollToBottom() {
-//   window.scrollTo({
-//     top: document.body.scrollHeight,
-//     behavior: "smooth"
-//   });
-// }
 
 checkForDuplicates();
