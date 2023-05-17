@@ -139,3 +139,9 @@ input {
 .fa-arrow-down {
   margin-bottom: 0;
 }
+
+.numberOfTasks {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
