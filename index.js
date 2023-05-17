@@ -121,7 +121,7 @@ function loadTasksFromLocalStorage() {
 
   const tasks = getTasksFromLocalStorage();
   tasks.forEach((task) => {
-    console.log(taskList)
+    console.log(taskList);
     taskList.innerHTML += `
    
     <div class="row dropzone"" data-id="${task.id}" draggable="true">
@@ -132,20 +132,29 @@ function loadTasksFromLocalStorage() {
        <i class="fas fa-edit"></i>
     </div>`;
 
-    
-    taskList.addEventListener("click", editContent);
+    const draggableElementsArray = document.querySelectorAll(".dropzone");
+    console.log(draggableElementsArray);
 
-    let isEditable = false;
+    taskList.addEventListener("click", editContent);
 
     function editContent(e) {
       const element = e.target;
       if (element.classList.contains("fa-edit")) {
         const prevSibling =
           element.previousElementSibling.previousElementSibling;
-        isEditable = true;
-        prevSibling.contentEditable = isEditable;
-      } else {
-        isEditable = false;
+
+        prevSibling.parentElement.addEventListener("mouseover", function (e) {
+          const index = tasks.findIndex(
+            (task) => task.id === Number(e.srcElement.dataset.id)
+          );
+          if (index !== -1) {
+            prevSibling.contentEditable = true;
+            const tasks = getTasksFromLocalStorage();
+            tasks[index].text = prevSibling.textContent;
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+          }
+        });
+        prevSibling.contentEditable = false;
       }
     }
   });
