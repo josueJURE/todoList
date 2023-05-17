@@ -54,14 +54,14 @@ function addTaskToList() {
 
   addTaskToLocalStorage(task);
 
-  // taskList.innerHTML += `
-  // <div class="row dropzone" data-id="${task.id} draggable="true">
-  //    <div>${generateDigitForEachTask(task.id)}</div>
-  //    <input type="checkbox" />
-  //    <div>${task.text}</div>
-  //    <i class="fa-solid fa-trash"></i>
-  //    <i class="fas fa-edit"></i>
-  // </div>`;
+  taskList.innerHTML += `
+  <div class="row dropzone" data-id="${task.id} draggable="true">
+     <div>${generateDigitForEachTask(task.id)}</div>
+     <input type="checkbox" />
+     <div>${task.text}</div>
+     <i class="fa-solid fa-trash"></i>
+     <i class="fas fa-edit"></i>
+  </div>`;
   userInput.value = "";
 
   const icons = document.querySelectorAll(".fa-trash");
