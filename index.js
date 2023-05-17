@@ -4,6 +4,7 @@ const reset = document.querySelector(".fa-trash-restore-alt");
 const moveTopOrBottom = document.querySelector(".moveTopOrBottom");
 const arrowUp = document.querySelector(".fa-arrow-up");
 const arrowDown = document.querySelector(".fa-arrow-down");
+const numberOfTasks = document.querySelector(".numberOfTasks")
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
