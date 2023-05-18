@@ -4,11 +4,10 @@ const reset = document.querySelector(".fa-trash-restore-alt");
 const moveTopOrBottom = document.querySelector(".moveTopOrBottom");
 const arrowUp = document.querySelector(".fa-arrow-up");
 const arrowDown = document.querySelector(".fa-arrow-down");
-const numberOfTasks = document.querySelector(".numberOfTasks")
+const numberOfTasks = document.querySelector(".numberOfTasks");
 
 window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
-
 
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
@@ -135,23 +134,19 @@ function loadTasksFromLocalStorage() {
        <i class="fas fa-edit"></i>
     </div>`;
 
-
-    numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length)
+    numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length);
 
     const draggableElementsArray = document.querySelectorAll(".dropzone");
     console.log(draggableElementsArray);
-
-
   });
 
   taskList.addEventListener("click", editContent);
 
   function editContent(e) {
-    console.log("clicked")
+    console.log("clicked");
     const element = e.target;
     if (element.classList.contains("fa-edit")) {
-      const prevSibling =
-        element.previousElementSibling.previousElementSibling;
+      const prevSibling = element.previousElementSibling.previousElementSibling;
 
       prevSibling.parentElement.addEventListener("mouseover", function (e) {
         const index = tasks.findIndex(
@@ -182,8 +177,8 @@ function addTaskToLocalStorage(task) {
 
   const tasks = getTasksFromLocalStorage();
   tasks.push(task);
-  numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length)
- 
+  numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length);
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
@@ -206,7 +201,7 @@ function deleteTaskFromLocalStorage(id) {
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
   tasks.splice(index, 1);
-  numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length)
+  numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
@@ -308,11 +303,9 @@ function scrollAllTheWayDown() {
 }
 
 function howManyTasksUserHas(arrayLength) {
-  if(arrayLength < 2) {
-    return `you have ${arrayLength} task left`
-  } else {
-    return `you have ${arrayLength} tasks left`
-  }
+  return arrayLength < 2
+    ? ` you have ${arrayLength} task left`
+    : `you have ${arrayLength} tasks left`;
 }
 
 checkForDuplicates();
