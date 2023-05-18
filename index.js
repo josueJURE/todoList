@@ -29,6 +29,8 @@ function deleteAllTasks() {
   }
   taskList.innerHTML = "";
   localStorage.clear();
+  const tasks = getTasksFromLocalStorage();
+  numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length);
 }
 
 function addTaskToList() {
