@@ -306,8 +306,14 @@ function scrollAllTheWayDown() {
 
 function howManyTasksUserHas(arrayLength) {
   return arrayLength < 2
-    ? ` you have ${arrayLength} task left`
-    : `you have ${arrayLength} tasks left`;
+    ? ` you have completed ${howManyTasksUserHasCompleted()} of ${arrayLength} tasks`
+    : `you have completed ${howManyTasksUserHasCompleted()} of ${arrayLength} tasks`;
+}
+
+function howManyTasksUserHasCompleted() {
+  const tasks = getTasksFromLocalStorage();
+  completedTasks = tasks.filter((task) => task.completed);
+  return completedTasks.length;
 }
 
 checkForDuplicates();
