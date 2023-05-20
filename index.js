@@ -30,7 +30,7 @@ function deleteAllTasks() {
   taskList.innerHTML = "";
   localStorage.clear();
   const tasks = getTasksFromLocalStorage();
-  numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length);
+  numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
 }
 
 function addTaskToList() {
@@ -136,7 +136,7 @@ function loadTasksFromLocalStorage() {
        <i class="fas fa-edit"></i>
     </div>`;
 
-    numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length);
+    numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
 
     const draggableElementsArray = document.querySelectorAll(".dropzone");
     console.log(draggableElementsArray);
@@ -179,7 +179,7 @@ function addTaskToLocalStorage(task) {
 
   const tasks = getTasksFromLocalStorage();
   tasks.push(task);
-  numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length);
+  numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -203,7 +203,7 @@ function deleteTaskFromLocalStorage(id) {
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
   tasks.splice(index, 1);
-  numberOfTasks.innerHTML = howManyTasksUserHas(tasks.length);
+  numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
@@ -304,7 +304,7 @@ function scrollAllTheWayDown() {
   });
 }
 
-function howManyTasksUserHas(arrayLength) {
+function numberOfTasksUserHas(arrayLength) {
   return arrayLength < 2
     ? ` you have completed ${numberOfTasksUserHasCompleted()} of ${arrayLength} tasks`
     : `you have completed ${numberOfTasksUserHasCompleted()} of ${arrayLength} tasks`;
