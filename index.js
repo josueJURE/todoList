@@ -306,11 +306,11 @@ function scrollAllTheWayDown() {
 
 function howManyTasksUserHas(arrayLength) {
   return arrayLength < 2
-    ? ` you have completed ${howManyTasksUserHasCompleted()} of ${arrayLength} tasks`
-    : `you have completed ${howManyTasksUserHasCompleted()} of ${arrayLength} tasks`;
+    ? ` you have completed ${numberOfTasksUserHasCompleted()} of ${arrayLength} tasks`
+    : `you have completed ${numberOfTasksUserHasCompleted()} of ${arrayLength} tasks`;
 }
 
-function howManyTasksUserHasCompleted() {
+function numberOfTasksUserHasCompleted() {
   const tasks = getTasksFromLocalStorage();
   completedTasks = tasks.filter((task) => task.completed);
   return completedTasks.length;
