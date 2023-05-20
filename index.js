@@ -97,6 +97,8 @@ function crossTaskOut(e) {
     const completed = target.checked;
     toggleTaskCompletionInLocalStorage(id, completed);
     target.nextElementSibling.classList.toggle("lineThrough");
+    const tasks = getTasksFromLocalStorage()
+    numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
   }
 }
 
@@ -312,7 +314,7 @@ function numberOfTasksUserHas(arrayLength) {
 
 function numberOfTasksUserHasCompleted() {
   const tasks = getTasksFromLocalStorage();
-  completedTasks = tasks.filter((task) => task.completed);
+  completedTasks = tasks.filter(task => task.completed)
   return completedTasks.length;
 }
 
