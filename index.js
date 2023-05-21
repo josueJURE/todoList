@@ -10,7 +10,6 @@ window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 
 taskList.addEventListener("click", crossTaskOut);
-taskList.addEventListener("click", deleteTask);
 arrowUp.addEventListener("click", scrollAllTheWayUp);
 arrowDown.addEventListener("click", scrollAllTheWayDown);
 
@@ -68,8 +67,12 @@ function addTaskToList() {
   </div>`;
   userInput.value = "";
 
-  // const icons = document.querySelectorAll(".fa-trash");
-  // icons.forEach((icon) => icon.addEventListener("click", deleteTask));
+  const trashIcons = taskList.querySelectorAll(".fa-trash");
+  trashIcons.forEach((trashIcon) => trashIcon.addEventListener("click", deleteTask));
+
+  const editIcons = taskList.querySelectorAll(".fa-edit");
+  console.log(editIcons)
+  editIcons.forEach((editIcon) => editIcon.addEventListener("click", editContent))
 
   if (DEBUG) {
     console.log("addTaskToList:", "taskList.children:", taskList.children);
@@ -144,28 +147,9 @@ function loadTasksFromLocalStorage() {
     console.log(draggableElementsArray);
   });
 
-  taskList.addEventListener("click", editContent);
+  // taskList.addEventListener("click", editContent);
 
-  function editContent(e) {
-    console.log("clicked");
-    const element = e.target;
-    if (element.classList.contains("fa-edit")) {
-      const prevSibling = element.previousElementSibling.previousElementSibling;
 
-      prevSibling.parentElement.addEventListener("mouseover", function (e) {
-        const index = tasks.findIndex(
-          (task) => task.id === Number(e.srcElement.dataset.id)
-        );
-        if (index !== -1) {
-          prevSibling.contentEditable = true;
-          const tasks = getTasksFromLocalStorage();
-          tasks[index].text = prevSibling.textContent;
-          localStorage.setItem("tasks", JSON.stringify(tasks));
-        }
-      });
-      prevSibling.contentEditable = false;
-    }
-  }
 
   if (DEBUG) {
     console.log("loadTasksFromLocalStorage:", "# of tasks:", tasks.length);
@@ -215,6 +199,27 @@ function getTasksFromLocalStorage() {
   }
 
   return JSON.parse(localStorage.getItem("tasks") || "[]");
+}
+
+function editContent(e) {
+  console.log("editContent()");
+  const element = e.target;
+  if (element.classList.contains("fa-edit")) {
+    const prevSibling = element.previousElementSibling.previousElementSibling;
+
+    prevSibling.parentElement.addEventListener("mouseover", function (e) {
+      const index = tasks.findIndex(
+        (task) => task.id === Number(e.srcElement.dataset.id)
+      );
+      if (index !== -1) {
+        prevSibling.contentEditable = true;
+        const tasks = getTasksFromLocalStorage();
+        tasks[index].text = prevSibling.textContent;
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+    });
+    prevSibling.contentEditable = false;
+  }
 }
 
 function generateDigitForEachTask(id) {
