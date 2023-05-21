@@ -10,6 +10,7 @@ window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 
 taskList.addEventListener("click", crossTaskOut);
+taskList.addEventListener("click", deleteTask)
 arrowUp.addEventListener("click", scrollAllTheWayUp);
 arrowDown.addEventListener("click", scrollAllTheWayDown);
 
@@ -67,8 +68,7 @@ function addTaskToList() {
   </div>`;
   userInput.value = "";
 
-  const trashIcons = taskList.querySelectorAll(".fa-trash");
-  trashIcons.forEach((trashIcon) => trashIcon.addEventListener("click", deleteTask));
+ 
 
   const editIcons = taskList.querySelectorAll(".fa-edit");
   console.log(editIcons)
