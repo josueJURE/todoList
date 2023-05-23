@@ -118,6 +118,8 @@ function deleteTask(e) {
     deleteTaskFromLocalStorage(id);
     // alert("deleting a task can't be undone");
     target.parentElement.remove();
+    const tasks = getTasksFromLocalStorage();
+    numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
     updateNumbersAfterDraggingOrDeletingAtask(container);
     updateMoveTopBottomVisibility(container.length);
   }
