@@ -149,7 +149,7 @@ function loadTasksFromLocalStorage() {
     console.log(draggableElementsArray);
   });
 
-  // taskList.addEventListener("click", editContent);
+  taskList.addEventListener("click", editContent);
 
   if (DEBUG) {
     console.log("loadTasksFromLocalStorage:", "# of tasks:", tasks.length);
@@ -208,18 +208,21 @@ function editContent(e) {
   if (element.classList.contains("fa-edit")) {
     const prevSibling = element.previousElementSibling.previousElementSibling;
 
-    prevSibling.parentElement.addEventListener("mouseover", function (e) {
+    prevSibling.contentEditable = true;
+    prevSibling.focus();
+    prevSibling.parentElement.addEventListener("mouseleave", function (e) {
+      // console.log("EDIT IS DONE");
+      const tasks = getTasksFromLocalStorage();
       const index = tasks.findIndex(
         (task) => task.id === Number(e.srcElement.dataset.id)
       );
       if (index !== -1) {
-        prevSibling.contentEditable = true;
-        const tasks = getTasksFromLocalStorage();
         tasks[index].text = prevSibling.textContent;
         localStorage.setItem("tasks", JSON.stringify(tasks));
       }
+      prevSibling.blur();
+      prevSibling.contentEditable = false;
     });
-    prevSibling.contentEditable = false;
   }
 }
 
