@@ -77,7 +77,7 @@ function addTaskToList() {
   if (DEBUG) {
     console.log("addTaskToList:", "taskList.children:", taskList.children);
   }
-  updateNumbersAfterDraggingOrDeletingAtask(taskList.children);
+  updateNumbersAfterDraggingOrDeletingAtask();
   updateMoveTopBottomVisibility(taskList.children.length);
 
   console.log(taskList.children.length);
@@ -120,7 +120,7 @@ function deleteTask(e) {
     target.parentElement.remove();
     const tasks = getTasksFromLocalStorage();
     numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
-    updateNumbersAfterDraggingOrDeletingAtask(container);
+    updateNumbersAfterDraggingOrDeletingAtask();
     updateMoveTopBottomVisibility(container.length);
   }
 }
@@ -242,7 +242,7 @@ new Sortable(taskList, {
 
     const parentContainer = evt.to;
     const parentContainerChildren = Array.from(parentContainer.children);
-    updateNumbersAfterDraggingOrDeletingAtask(parentContainerChildren);
+    updateNumbersAfterDraggingOrDeletingAtask();
 
     const tasks = getTasksFromLocalStorage();
     const oldIndex = evt.oldDraggableIndex;
@@ -257,10 +257,12 @@ new Sortable(taskList, {
   },
 });
 
-function updateNumbersAfterDraggingOrDeletingAtask(arr) {
+function updateNumbersAfterDraggingOrDeletingAtask() {
   if (DEBUG) {
     console.log("updateNumbersAfterDraggingOrDeletingAtask");
   }
+
+  const arr = taskList.children;
 
   for (var i = 0; i < arr.length; i++) {
     arr[i].firstElementChild.innerHTML = i + 1;
