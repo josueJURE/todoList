@@ -10,7 +10,7 @@ window.addEventListener("load", loadTasksFromLocalStorage);
 add.addEventListener("click", addTaskToList);
 
 taskList.addEventListener("click", crossTaskOut);
-taskList.addEventListener("click", deleteTask)
+taskList.addEventListener("click", deleteTask);
 arrowUp.addEventListener("click", scrollAllTheWayUp);
 arrowDown.addEventListener("click", scrollAllTheWayDown);
 
@@ -34,6 +34,7 @@ function deleteAllTasks() {
 }
 
 function addTaskToList() {
+  const tasks = getTasksFromLocalStorage();
   if (DEBUG) {
     console.log("addTaskToList");
   }
@@ -43,7 +44,6 @@ function addTaskToList() {
     return;
   }
 
-  const tasks = getTasksFromLocalStorage();
   const doesTaskExist = tasks.some((task) => task.text === userInput.value);
   if (doesTaskExist) {
     alert("This task already exists in your to-do list");
@@ -59,7 +59,7 @@ function addTaskToList() {
   addTaskToLocalStorage(task);
 
   taskList.innerHTML += `
-  <div class="row dropzone" data-id="${task.id} draggable="true">
+  <div class="row dropzone" data-id="${task.id}" draggable="true">
      <div>${generateDigitForEachTask(task.id)}</div>
      <input type="checkbox" />
      <div>${task.text}</div>
@@ -68,11 +68,11 @@ function addTaskToList() {
   </div>`;
   userInput.value = "";
 
- 
-
   const editIcons = taskList.querySelectorAll(".fa-edit");
-  console.log(editIcons)
-  editIcons.forEach((editIcon) => editIcon.addEventListener("click", editContent))
+  console.log(editIcons);
+  editIcons.forEach((editIcon) =>
+    editIcon.addEventListener("click", editContent)
+  );
 
   if (DEBUG) {
     console.log("addTaskToList:", "taskList.children:", taskList.children);
@@ -96,11 +96,11 @@ function crossTaskOut(e) {
 
   let target = e.target;
   if (target.tagName === "INPUT") {
+    const tasks = getTasksFromLocalStorage();
     const id = target.parentElement.dataset.id;
     const completed = target.checked;
     toggleTaskCompletionInLocalStorage(id, completed);
     target.nextElementSibling.classList.toggle("lineThrough");
-    const tasks = getTasksFromLocalStorage()
     numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
   }
 }
@@ -133,7 +133,7 @@ function loadTasksFromLocalStorage() {
     console.log(taskList);
     taskList.innerHTML += `
    
-    <div class="row dropzone"" data-id="${task.id}" draggable="true">
+    <div class="row dropzone" data-id="${task.id}" draggable="true">
       <div>${generateDigitForEachTask(task.id)}</div>
        <input type="checkbox" ${task.completed ? "checked" : ""} />
        <div class="${task.completed ? "lineThrough" : ""}">${task.text}</div>
@@ -148,8 +148,6 @@ function loadTasksFromLocalStorage() {
   });
 
   // taskList.addEventListener("click", editContent);
-
-
 
   if (DEBUG) {
     console.log("loadTasksFromLocalStorage:", "# of tasks:", tasks.length);
@@ -177,6 +175,7 @@ function toggleTaskCompletionInLocalStorage(id, completed) {
 
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
+  console.log(index);
   tasks[index].completed = completed;
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -319,7 +318,7 @@ function numberOfTasksUserHas(arrayLength) {
 
 function numberOfTasksUserHasCompleted() {
   const tasks = getTasksFromLocalStorage();
-  completedTasks = tasks.filter(task => task.completed)
+  completedTasks = tasks.filter((task) => task.completed);
   return completedTasks.length;
 }
 
