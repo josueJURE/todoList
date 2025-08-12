@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Caveat&family=Open+Sans:ital,wght@1,300&family=Quicksand:wght@300;400;500;600;700&display=swap");
-    </style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The To-Do List</title>
 
-    <title>The To Do List</title>
-  </head>
-  <body>
-    <div class="mainContainer">
-      <div class="numberOfTasks"></div>
-      <h1>The To Do List App</h1>
-      <div class="clear">
-        <i class="fas fa-trash-restore-alt"></i>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>The To-Do List</h1>
+      <div class="task-info">
+        <span class="numberOfTasks"></span>
+        <button class="clear-btn"><i class="fas fa-trash"></i> Clear All</button>
+        <button id="themeToggle" class="theme-btn"><i class="fas fa-moon"></i></button>
       </div>
-      <div class="taskListContainer">
-        <div id="taskList"></div>
-        <div class="moveTopOrBottom showBar">
-          <i class="fa fa-arrow-up" aria-hidden="true"></i>
-          <i class="fa fa-arrow-down" aria-hidden="true"></i>
-        </div>
-      </div>
-      <button class="loadSundayList">Load Sunday List</button>
-      <div class="addTakSection">
-        <i class="fa"></i>
-        <i id="add" class="fa-solid fa-plus-circle"></i>
-        <input id="userInput" type="text" required />
-      </div>
-    </div>
-  </body>
+    </header>
+
+    <main>
+      <div id="taskList" class="task-list"></div>
+    </main>
+
+    <footer>
+      <input id="userInput" type="text" placeholder="Add a new task..." required />
+      <button id="add" class="add-btn"><i class="fas fa-plus"></i></button>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
   <script src="node_modules/sortablejs/Sortable.min.js"></script>
   <script src="index.js"></script>
-  <script
-    src="https://kit.fontawesome.com/2da085e01f.js"
-    crossorigin="anonymous"
-  ></script>
+</body>
 </html>
+

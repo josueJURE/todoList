@@ -11,17 +11,17 @@ add.addEventListener("click", addTaskToList);
 
 taskList.addEventListener("click", crossTaskOut);
 taskList.addEventListener("click", deleteTask);
-arrowUp.addEventListener("click", scrollAllTheWayUp);
-arrowDown.addEventListener("click", scrollAllTheWayDown);
+// arrowUp.addEventListener("click", scrollAllTheWayUp);
+// arrowDown.addEventListener("click", scrollAllTheWayDown);
 
 reset.addEventListener("click", deleteAllTasks);
 
-const DEBUG = false;
+// const DEBUG = false;
 
 function deleteAllTasks() {
-  if (DEBUG) {
-    console.log("deleteAllTasks");
-  }
+  // if (DEBUG) {
+  //   console.log("deleteAllTasks");
+  // }
 
   if (taskList.innerHTML === "") {
     alert("you have no task in your todo list");
@@ -33,11 +33,20 @@ function deleteAllTasks() {
   numberOfTasks.innerHTML = numberOfTasksUserHas(tasks.length);
 }
 
+// Light/Dark Mode Toggle
+document.getElementById("themeToggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  const icon = document.querySelector("#themeToggle i");
+  icon.classList.toggle("fa-moon");
+  icon.classList.toggle("fa-sun");
+});
+
+
 function addTaskToList() {
   const tasks = getTasksFromLocalStorage();
-  if (DEBUG) {
-    console.log("addTaskToList");
-  }
+  // if (DEBUG) {
+  //   console.log("addTaskToList");
+  // }
 
   if (userInput.value === "") {
     alert("please fill in input box");
@@ -74,9 +83,9 @@ function addTaskToList() {
     editIcon.addEventListener("click", editContent)
   );
 
-  if (DEBUG) {
-    console.log("addTaskToList:", "taskList.children:", taskList.children);
-  }
+  // if (DEBUG) {
+  //   console.log("addTaskToList:", "taskList.children:", taskList.children);
+  // }
   updateNumbersAfterDraggingOrDeletingAtask();
   updateMoveTopBottomVisibility(taskList.children.length);
 
@@ -90,9 +99,9 @@ userInput.addEventListener("keydown", function (e) {
 });
 
 function crossTaskOut(e) {
-  if (DEBUG) {
-    console.log("crossTaskOut");
-  }
+  // if (DEBUG) {
+  //   console.log("crossTaskOut");
+  // }
 
   let target = e.target;
   if (target.tagName === "INPUT") {
@@ -106,9 +115,9 @@ function crossTaskOut(e) {
 }
 
 function deleteTask(e) {
-  if (DEBUG) {
-    console.log("deleteTask");
-  }
+  // if (DEBUG) {
+  //   console.log("deleteTask");
+  // }
 
   let target = e.target;
   const container = document.querySelectorAll("#taskList > div");
@@ -126,9 +135,9 @@ function deleteTask(e) {
 }
 
 function loadTasksFromLocalStorage() {
-  if (DEBUG) {
-    console.log("loadTasksFromLocalStorage");
-  }
+  // if (DEBUG) {
+  //   console.log("loadTasksFromLocalStorage");
+  // }
 
   const tasks = getTasksFromLocalStorage();
   tasks.forEach((task) => {
@@ -151,17 +160,17 @@ function loadTasksFromLocalStorage() {
 
   taskList.addEventListener("click", editContent);
 
-  if (DEBUG) {
-    console.log("loadTasksFromLocalStorage:", "# of tasks:", tasks.length);
-  }
+  // if (DEBUG) {
+  //   console.log("loadTasksFromLocalStorage:", "# of tasks:", tasks.length);
+  // }
 
   updateMoveTopBottomVisibility(tasks.length);
 }
 
 function addTaskToLocalStorage(task) {
-  if (DEBUG) {
-    console.log("addTaskToLocalStorage");
-  }
+  // if (DEBUG) {
+  //   console.log("addTaskToLocalStorage");
+  // }
 
   const tasks = getTasksFromLocalStorage();
   tasks.push(task);
@@ -171,9 +180,9 @@ function addTaskToLocalStorage(task) {
 }
 
 function toggleTaskCompletionInLocalStorage(id, completed) {
-  if (DEBUG) {
-    console.log("toggleTaskCompletionInLocalStorage");
-  }
+  // if (DEBUG) {
+  //   console.log("toggleTaskCompletionInLocalStorage");
+  // }
 
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
@@ -183,9 +192,9 @@ function toggleTaskCompletionInLocalStorage(id, completed) {
 }
 
 function deleteTaskFromLocalStorage(id) {
-  if (DEBUG) {
-    console.log("deleteTaskFromLocalStorage");
-  }
+  // if (DEBUG) {
+  //   console.log("deleteTaskFromLocalStorage");
+  // }
 
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
@@ -195,9 +204,9 @@ function deleteTaskFromLocalStorage(id) {
 }
 
 function getTasksFromLocalStorage() {
-  if (DEBUG) {
-    console.log("getTasksFromLocalStorage");
-  }
+  // if (DEBUG) {
+  //   console.log("getTasksFromLocalStorage");
+  // }
 
   return JSON.parse(localStorage.getItem("tasks") || "[]");
 }
@@ -227,9 +236,9 @@ function editContent(e) {
 }
 
 function generateDigitForEachTask(id) {
-  if (DEBUG) {
-    console.log("generateDigitForEachTask");
-  }
+  // if (DEBUG) {
+  //   console.log("generateDigitForEachTask");
+  // }
 
   const tasks = getTasksFromLocalStorage();
   const index = tasks.findIndex((task) => task.id === Number(id));
@@ -239,9 +248,9 @@ function generateDigitForEachTask(id) {
 new Sortable(taskList, {
   animation: 150,
   onEnd: function (evt) {
-    if (DEBUG) {
-      console.log("Sortable.onEnd");
-    }
+    // if (DEBUG) {
+    //   console.log("Sortable.onEnd");
+    // }
 
     const parentContainer = evt.to;
     const parentContainerChildren = Array.from(parentContainer.children);
@@ -261,9 +270,9 @@ new Sortable(taskList, {
 });
 
 function updateNumbersAfterDraggingOrDeletingAtask() {
-  if (DEBUG) {
-    console.log("updateNumbersAfterDraggingOrDeletingAtask");
-  }
+  // if (DEBUG) {
+  //   console.log("updateNumbersAfterDraggingOrDeletingAtask");
+  // }
 
   const arr = taskList.children;
 
@@ -273,18 +282,18 @@ function updateNumbersAfterDraggingOrDeletingAtask() {
 }
 
 function checkForDuplicates() {
-  if (DEBUG) {
-    console.log("checkForDuplicates");
-  }
+  // if (DEBUG) {
+  //   console.log("checkForDuplicates");
+  // }
 
   const tasks = getTasksFromLocalStorage();
   return tasks.findIndex((task) => task.text === userInput.value);
 }
 
 function updateMoveTopBottomVisibility(numberOfItems) {
-  if (DEBUG) {
-    console.log("setMoveTopBottomVisibility:", "# of items:", numberOfItems);
-  }
+  // if (DEBUG) {
+  //   console.log("setMoveTopBottomVisibility:", "# of items:", numberOfItems);
+  // }
 
   if (numberOfItems < 8) {
     if (!moveTopOrBottom.classList.contains("hideBar")) {
@@ -296,9 +305,9 @@ function updateMoveTopBottomVisibility(numberOfItems) {
 }
 
 function scrollAllTheWayUp() {
-  if (DEBUG) {
-    console.log("scrollAllTheWayUp");
-  }
+  // if (DEBUG) {
+  //   console.log("scrollAllTheWayUp");
+  // }
 
   taskList.scroll({
     top: 0,
@@ -307,9 +316,9 @@ function scrollAllTheWayUp() {
 }
 
 function scrollAllTheWayDown() {
-  if (DEBUG) {
-    console.log("scrollAllTheWayDown");
-  }
+  // if (DEBUG) {
+  //   console.log("scrollAllTheWayDown");
+  // }
 
   taskList.scroll({
     top: taskList.scrollHeight,
